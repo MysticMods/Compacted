@@ -1,0 +1,20 @@
+modLoader="javafml"
+loaderVersion="[28,)"
+issueTrackerURL="https://github.com/MysticMods/Compacted/issues"
+
+[[mods]]
+modId="compacted"
+version="1.0.0"
+mcversion= "1.14,"
+displayName="Compacted"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/compacted"
+credits="Java, Forge, MCP, Minecraft, and Kat & Vulpie for providing textures"
+authors="Noobanidus"
+description='''A mod providing compacted cobblestone & a way to use it in durable tool form with compacted & double compacted hammers.'''
+
+[[dependencies.compacted]]
+    modId="forge"
+    mandatory=true
+    versionRange="[28.1,)"
+    ordering="NONE"
+    side="BOTH"

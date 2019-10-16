@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "compacted:compacted_cobblestone",
+    "compacted:double_compacted_cobblestone"
+  ]
+}
