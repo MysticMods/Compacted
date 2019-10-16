@@ -32,9 +32,9 @@ public class Registry {
   public static final RegistryObject<Item> COMPACTED_ROD = registerItem("compacted_rod", item(Item::new, Item.Properties::new));
   public static final RegistryObject<Item> DOUBLE_COMPACTED_ROD = registerItem("double_compacted_rod", item(Item::new, Item.Properties::new));
 
-  public static final RegistryObject<Item> STONE_HAMMER = registerItem("stone_hammer", hammer(HammerItem::new, () -> new HammerItemProperties().attackDamage(3).attackSpeed(3f).tier(ItemTier.STONE).width(1)));
-  public static final RegistryObject<Item> COMPACTED_HAMMER = registerItem("compacted_hammer", hammer(HammerItem::new, () -> new HammerItemProperties().attackDamage(5).attackSpeed(3f).tier(CompactedStoneMaterial.MATERIAL).width(1)));
-  public static final RegistryObject<Item> DOUBLE_COMPACTED_HAMMER = registerItem("double_compacted_hammer", hammer(HammerItem::new, () -> new HammerItemProperties().attackDamage(10).attackSpeed(3f).tier(DoubleCompactedStoneMaterial.MATERIAL).width(1)));
+  public static final RegistryObject<Item> STONE_HAMMER = registerItem("stone_hammer", hammer(HammerItem::new, () -> new HammerItemProperties().attackDamage(6).attackSpeed(-3.5f).tier(ItemTier.STONE).width(1)));
+  public static final RegistryObject<Item> COMPACTED_HAMMER = registerItem("compacted_hammer", hammer(HammerItem::new, () -> new HammerItemProperties().attackDamage(8).attackSpeed(-3.5f).tier(CompactedStoneMaterial.MATERIAL).width(1)));
+  public static final RegistryObject<Item> DOUBLE_COMPACTED_HAMMER = registerItem("double_compacted_hammer", hammer(HammerItem::new, () -> new HammerItemProperties().attackDamage(10).attackSpeed(-3.5f).tier(DoubleCompactedStoneMaterial.MATERIAL).width(1)));
 
   private static <T extends Item> RegistryObject<T> registerItem(final String name, final Supplier<T> supplier) {
     return ITEMS.register(name, supplier);

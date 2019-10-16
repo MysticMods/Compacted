@@ -17,6 +17,7 @@ import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
 import noobanidus.mods.compacted.config.Configuration;
+import noobanidus.mods.compacted.events.ClientRenderEvents;
 import noobanidus.mods.compacted.init.Registry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -51,6 +52,7 @@ public class Compacted {
 
   @OnlyIn(Dist.CLIENT)
   private void clientSetup(FMLClientSetupEvent event) {
+    MinecraftForge.EVENT_BUS.register(ClientRenderEvents.class);
   }
 
   public void serverStarting(FMLServerStartingEvent event) {

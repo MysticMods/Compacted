@@ -54,7 +54,7 @@ public class HammerItem extends ToolItem implements EffectiveToolItem, SizedTool
 
   @Override
   public boolean onBlockDestroyed(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity entity) {
-    if (entity instanceof PlayerEntity) {
+    if (entity instanceof PlayerEntity && !entity.isSneaking()) {
       BreakUtil.breakNeighbours(stack, world, pos, (PlayerEntity) entity);
     }
 
