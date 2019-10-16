@@ -6,10 +6,12 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
+import noobanidus.mods.compacted.util.BreakUtil;
 
 import java.util.Set;
 
@@ -22,8 +24,8 @@ public class HammerItem extends ToolItem implements EffectiveToolItem, SizedTool
 
   private final int width;
 
-  public HammerItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, CompactedItemProperties builder) {
-    super((float) attackDamageIn, attackSpeedIn, tier, EFFECTIVE_ON, builder.addToolType(ToolType.get("hammer"), tier.getHarvestLevel()));
+  public HammerItem(HammerItemProperties builder) {
+    super((float) builder.getAttackDamage(), builder.getAttackSpeed(), builder.getTier(), EFFECTIVE_ON, builder.addToolType(ToolType.get("hammer"), builder.getTier().getHarvestLevel()));
     this.width = builder.getWidth();
   }
 
@@ -52,6 +54,10 @@ public class HammerItem extends ToolItem implements EffectiveToolItem, SizedTool
 
   @Override
   public boolean onBlockDestroyed(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity entity) {
+    if (entity instanceof PlayerEntity) {
+      BreakUtil.breakNeighbours(stack, world, pos, (PlayerEntity) entity);
+    }
+
     return super.onBlockDestroyed(stack, world, state, pos, entity);
   }
 

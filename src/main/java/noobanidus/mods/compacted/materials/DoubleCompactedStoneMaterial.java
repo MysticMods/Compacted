@@ -5,10 +5,12 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.IItemProvider;
 import noobanidus.mods.compacted.init.Registry;
 
-public class CompressedStoneMaterial implements IItemTier {
+public class DoubleCompactedStoneMaterial implements IItemTier {
+  public static DoubleCompactedStoneMaterial MATERIAL = new DoubleCompactedStoneMaterial();
+
   @Override
   public int getMaxUses() {
-    return 490;
+    return 980;
   }
 
   @Override
@@ -33,6 +35,6 @@ public class CompressedStoneMaterial implements IItemTier {
 
   @Override
   public Ingredient getRepairMaterial() {
-    return Ingredient.fromItems((IItemProvider) () -> Registry.COMPACTED_COBBLESTONE_ITEM.orElse(null));
+    return Ingredient.fromItems((IItemProvider) () -> Registry.DOUBLE_COMPACTED_COBBLESTONE_ITEM.orElse(null));
   }
 }
