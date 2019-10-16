@@ -1,8 +1,6 @@
 {
 	"replace": false,
 	"values":[
-	"compacted:stone_rod",
-    "compacted:compacted_rod",
-    "compacted:double_rod"
+	"compacted:stone_rod"
 	]
 }

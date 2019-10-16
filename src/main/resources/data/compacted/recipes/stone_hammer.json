@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#X#",
+    " X "
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:rods/stone"
+    },
+    "#": [{
+      "tag": "forge:cobblestone"
+    },
+    {
+      "tag": "forge:stone"
+    }]
+  },
+  "result": {
+    "item": "compacted:stone_hammer"
+  }
+}

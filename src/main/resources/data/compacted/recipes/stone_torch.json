@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "C",
+    "X"
+  ],
+  "key": {
+    "C": [{
+      "item": "minecraft:coal"
+    },
+    {
+      "item": "minecraft:charcoal"
+    }],
+    "X": {
+      "tag": "forge:rods/stone"
+    }
+  },
+  "result": {
+    "item": "minecraft:torch",
+    "count": 16
+  }
+}

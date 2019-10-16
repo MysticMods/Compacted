@@ -24,13 +24,12 @@ public class Registry {
   public static final RegistryObject<BlockItem> DOUBLE_COMPACTED_COBBLESTONE_ITEM = registerItem("double_compacted_cobblestone", blockItem(DOUBLE_COMPACTED_COBBLESTONE));
 
   public static final RegistryObject<Item> STONE_ROD = registerItem("stone_rod", item(Item::new, Item.Properties::new));
-  public static final RegistryObject<Item> IRON_ROD = registerItem("iron_rod", item(Item::new, Item.Properties::new));
   public static final RegistryObject<Item> COMPACTED_ROD = registerItem("compacted_rod", item(Item::new, Item.Properties::new));
   public static final RegistryObject<Item> DOUBLE_COMPACTED_ROD = registerItem("double_compacted_rod", item(Item::new, Item.Properties::new));
 
   public static final RegistryObject<Item> STONE_HAMMER = registerItem("stone_hammer", item(Item::new, () -> new Item.Properties().addToolType(ToolType.get("hammer"), 1).defaultMaxDamage(99)));
-  public static final RegistryObject<Item> COMPACTED_HAMMER = registerItem("stone_hammer", item(Item::new, () -> new Item.Properties().addToolType(ToolType.get("hammer"), 1).defaultMaxDamage(99)));
-  public static final RegistryObject<Item> DOUBLE_COMPACTED_HAMMER = registerItem("stone_hammer", item(Item::new, () -> new Item.Properties().addToolType(ToolType.get("hammer"), 1).defaultMaxDamage(99)));
+  public static final RegistryObject<Item> COMPACTED_HAMMER = registerItem("compacted_hammer", item(Item::new, () -> new Item.Properties().addToolType(ToolType.get("hammer"), 1).defaultMaxDamage(99)));
+  public static final RegistryObject<Item> DOUBLE_COMPACTED_HAMMER = registerItem("double_compacted_hammer", item(Item::new, () -> new Item.Properties().addToolType(ToolType.get("hammer"), 1).defaultMaxDamage(99)));
 
   private static <T extends Item> RegistryObject<T> registerItem(final String name, final Supplier<T> supplier) {
     return ITEMS.register(name, supplier);

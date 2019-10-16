@@ -1,5 +1,7 @@
 {
     "variants": {
-        "normal": { "model": "compacted:block/compacted_cobblestone" }
+        "": {
+            "model": "compacted:block/compacted_cobblestone"
+        }
     }
 }
