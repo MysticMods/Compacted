@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "compacted:compacted_hammer"
+    }
+  },
+  "result": {
+    "item": "compacted:double_compacted_hammer"
+  }
+}
