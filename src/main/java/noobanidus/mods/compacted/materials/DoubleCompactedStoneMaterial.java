@@ -10,12 +10,12 @@ public class DoubleCompactedStoneMaterial implements IItemTier {
 
   @Override
   public int getMaxUses() {
-    return 980;
+    return (int) (CompactedStoneMaterial.MATERIAL.getMaxUses() * 2.5); // 1637
   }
 
   @Override
   public float getEfficiency() {
-    return 4f;
+    return 4.15f;
   }
 
   @Override
@@ -30,7 +30,7 @@ public class DoubleCompactedStoneMaterial implements IItemTier {
 
   @Override
   public int getEnchantability() {
-    return 15;
+    return 13;
   }
 
   @Override
