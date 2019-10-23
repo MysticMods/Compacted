@@ -2,7 +2,6 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "X",
-    "X",
     "X"
   ],
   "key": {
@@ -14,6 +13,7 @@
     }]
   },
   "result": {
-    "item": "compacted:stone_rod"
+    "item": "compacted:stone_rod",
+    "count": 4
   }
 }
