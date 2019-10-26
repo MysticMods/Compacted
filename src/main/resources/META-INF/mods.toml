@@ -4,13 +4,13 @@ issueTrackerURL="https://github.com/MysticMods/Compacted/issues"
 
 [[mods]]
 modId="compacted"
-version="1.0.0"
+version="1.1.0"
 mcversion= "1.14,"
 displayName="Compacted"
 displayURL="https://www.curseforge.com/minecraft/mc-mods/compacted"
 credits="Java, Forge, MCP, Minecraft, and Kat & Vulpie for providing textures"
 authors="Noobanidus"
-description='''A mod providing compacted cobblestone & a way to use it in durable tool form with compacted & double compacted hammers.'''
+description='''A mod providing compacted cobblestone & a way to use it in durable tool form with compacted & double compacted hammers, as well as stone torches that can be used underwater.'''
 
 [[dependencies.compacted]]
     modId="forge"
