@@ -16,7 +16,7 @@
     }
   },
   "result": {
-    "item": "minecraft:torch",
+    "item": "compacted:stone_torch",
     "count": 1
   }
 }
