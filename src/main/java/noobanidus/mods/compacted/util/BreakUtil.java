@@ -26,6 +26,8 @@ public class BreakUtil {
 
     if (tool.isEmpty()) return;
 
+    if (!(tool.getItem() instanceof EffectiveToolItem)) return;
+
     BlockState originalState = world.getBlockState(pos);
     world.setBlockState(pos, Blocks.GLASS.getDefaultState());
     RayTraceResult ray = rayTrace(world, player);
