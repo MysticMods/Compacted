@@ -24,6 +24,8 @@ public class BreakUtil {
   public static void breakNeighbours(ItemStack tool, World world, BlockPos pos, PlayerEntity player) {
     if (world.isRemote) return;
 
+    if (tool.isEmpty()) return;
+
     BlockState originalState = world.getBlockState(pos);
     world.setBlockState(pos, Blocks.GLASS.getDefaultState());
     RayTraceResult ray = rayTrace(world, player);
