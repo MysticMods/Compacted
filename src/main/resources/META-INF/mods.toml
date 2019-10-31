@@ -4,7 +4,7 @@ issueTrackerURL="https://github.com/MysticMods/Compacted/issues"
 
 [[mods]]
 modId="compacted"
-version="1.1.0"
+version="1.2.0"
 mcversion= "1.14,"
 displayName="Compacted"
 displayURL="https://www.curseforge.com/minecraft/mc-mods/compacted"
