@@ -1,5 +1,6 @@
 package noobanidus.mods.compacted.util;
 
+import javafx.scene.effect.Effect;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -45,12 +46,14 @@ public class BreakUtil {
     for (BlockPos target : nearbyBlocks(tool, pos, facing, world, player)) {
       BlockState state = world.getBlockState(target);
 
-      EffectiveToolItem toolItem = (EffectiveToolItem) tool.getItem();
-      if (toolItem.getEffectiveBlocks().contains(state.getBlock()) || toolItem.getEffectiveMaterials().contains(state.getMaterial())) {
-        world.destroyBlock(target, false);
-        state.getBlock().harvestBlock(world, player, target, state, null, tool);
-        state.getBlock().dropXpOnBlockBreak(world, target, state.getExpDrop(world, target, fortune, silkTouch));
-        tool.damageItem(1, player, p -> p.sendBreakAnimation(Hand.MAIN_HAND));
+      if (tool.getItem() instanceof EffectiveToolItem) {
+        EffectiveToolItem toolItem = (EffectiveToolItem) tool.getItem();
+        if (toolItem.getEffectiveBlocks().contains(state.getBlock()) || toolItem.getEffectiveMaterials().contains(state.getMaterial())) {
+          world.destroyBlock(target, false);
+          state.getBlock().harvestBlock(world, player, target, state, null, tool);
+          state.getBlock().dropXpOnBlockBreak(world, target, state.getExpDrop(world, target, fortune, silkTouch));
+          tool.damageItem(1, player, p -> p.sendBreakAnimation(Hand.MAIN_HAND));
+        }
       }
     }
   }

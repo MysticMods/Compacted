@@ -13,6 +13,7 @@ import noobanidus.mods.compacted.blocks.StoneTorchBlock;
 import noobanidus.mods.compacted.blocks.WallStoneTorchBlock;
 import noobanidus.mods.compacted.items.HammerItem;
 import noobanidus.mods.compacted.items.HammerItemProperties;
+import noobanidus.mods.compacted.items.PocketCompacter;
 import noobanidus.mods.compacted.materials.CompactedStoneMaterial;
 import noobanidus.mods.compacted.materials.DoubleCompactedStoneMaterial;
 
@@ -46,6 +47,8 @@ public class Registry {
   public static final RegistryObject<Item> STONE_HAMMER = registerItem("stone_hammer", hammer(HammerItem::new, () -> new HammerItemProperties().attackDamage(6).attackSpeed(-3.5f).tier(ItemTier.STONE).width(1)));
   public static final RegistryObject<Item> COMPACTED_HAMMER = registerItem("compacted_hammer", hammer(HammerItem::new, () -> new HammerItemProperties().attackDamage(8).attackSpeed(-3.5f).tier(CompactedStoneMaterial.MATERIAL).width(1)));
   public static final RegistryObject<Item> DOUBLE_COMPACTED_HAMMER = registerItem("double_compacted_hammer", hammer(HammerItem::new, () -> new HammerItemProperties().attackDamage(10).attackSpeed(-3.5f).tier(DoubleCompactedStoneMaterial.MATERIAL).width(1)));
+
+  public static final RegistryObject<Item> POCKET_COMPACTER = registerItem("pocket_compacter", item(PocketCompacter::new, () -> new Item.Properties().rarity(Rarity.UNCOMMON).maxDamage(620)));
 
   public static final RegistryObject<Item> STONE_TORCH_ITEM = registerItem("stone_torch", item(properties -> new WallOrFloorItem(STONE_TORCH.get(), STONE_WALL_TORCH.get(), properties), Item.Properties::new));
   public static final RegistryObject<Item> COMPACTED_STONE_TORCH_ITEM = registerItem("compacted_stone_torch", item(properties -> new WallOrFloorItem(COMPACTED_STONE_TORCH.get(), COMPACTED_STONE_WALL_TORCH.get(), properties), Item.Properties::new));

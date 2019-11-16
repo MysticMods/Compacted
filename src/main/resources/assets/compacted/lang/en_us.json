@@ -10,6 +10,9 @@
   "item.compacted.double_compacted_rod": "Double-Compacted Rod",
   "item.compacted.stone_hammer": "Stone Hammer",
   "item.compacted.compacted_hammer": "Compacted Hammer",
-  "item.compacted.double_compacted_hammer": "Double-Compacted Hammer"
+  "item.compacted.double_compacted_hammer": "Double-Compacted Hammer",
+  "item.compacted.pocket_compacter": "Pocket Compacter",
+  "tooltip.compacted.pocket_compacter.desc1": "Converts cobblestone in your inventory into various levels of compacted cobblestone.",
+  "tooltip.compacted.pocket_compacter.desc2": "Functions more rapidly when enchanted with Efficiency."
 }
 
