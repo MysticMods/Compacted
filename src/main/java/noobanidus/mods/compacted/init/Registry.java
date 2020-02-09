@@ -1,10 +1,14 @@
 package noobanidus.mods.compacted.init;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.*;
+import net.minecraft.item.crafting.IRecipeSerializer;
+import net.minecraft.item.crafting.SpecialRecipeSerializer;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -14,8 +18,10 @@ import noobanidus.mods.compacted.blocks.WallStoneTorchBlock;
 import noobanidus.mods.compacted.items.HammerItem;
 import noobanidus.mods.compacted.items.HammerItemProperties;
 import noobanidus.mods.compacted.items.PocketCompacter;
+import noobanidus.mods.compacted.items.PocketImpacter;
 import noobanidus.mods.compacted.materials.CompactedStoneMaterial;
 import noobanidus.mods.compacted.materials.DoubleCompactedStoneMaterial;
+import noobanidus.mods.compacted.recipes.ImpacterRecipe;
 
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -24,6 +30,10 @@ import java.util.function.Supplier;
 public class Registry {
   public static final DeferredRegister<Block> BLOCKS = new DeferredRegister<>(ForgeRegistries.BLOCKS, Compacted.MODID);
   public static final DeferredRegister<Item> ITEMS = new DeferredRegister<>(ForgeRegistries.ITEMS, Compacted.MODID);
+  public static final DeferredRegister<IRecipeSerializer<?>> SERIALIZERS = new DeferredRegister<>(ForgeRegistries.RECIPE_SERIALIZERS, Compacted.MODID);
+  public static final DeferredRegister<SoundEvent> SOUND = new DeferredRegister<>(ForgeRegistries.SOUND_EVENTS, Compacted.MODID);
+
+  public static final RegistryObject<SoundEvent> DING = registerSoundEvent("ding", () -> new SoundEvent(new ResourceLocation(Compacted.MODID, "ding")));
 
   public static final RegistryObject<Block> COMPACTED_COBBLESTONE = registerBlock("compacted_cobblestone", block(Block::new, () -> Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0f, 8.0f)));
   public static final RegistryObject<Block> DOUBLE_COMPACTED_COBBLESTONE = registerBlock("double_compacted_cobblestone", block(Block::new, () -> Block.Properties.create(Material.ROCK).hardnessAndResistance(4.0f, 10.0f)));
@@ -49,10 +59,21 @@ public class Registry {
   public static final RegistryObject<Item> DOUBLE_COMPACTED_HAMMER = registerItem("double_compacted_hammer", hammer(HammerItem::new, () -> new HammerItemProperties().attackDamage(10).attackSpeed(-3.5f).tier(DoubleCompactedStoneMaterial.MATERIAL).width(1)));
 
   public static final RegistryObject<Item> POCKET_COMPACTER = registerItem("pocket_compacter", item(PocketCompacter::new, () -> new Item.Properties().rarity(Rarity.UNCOMMON).maxDamage(620)));
+  public static final RegistryObject<Item> POCKET_IMPACTER = registerItem("pocket_impacter", item(PocketImpacter::new, () -> new Item.Properties().rarity(Rarity.EPIC)));
 
   public static final RegistryObject<Item> STONE_TORCH_ITEM = registerItem("stone_torch", item(properties -> new WallOrFloorItem(STONE_TORCH.get(), STONE_WALL_TORCH.get(), properties), Item.Properties::new));
   public static final RegistryObject<Item> COMPACTED_STONE_TORCH_ITEM = registerItem("compacted_stone_torch", item(properties -> new WallOrFloorItem(COMPACTED_STONE_TORCH.get(), COMPACTED_STONE_WALL_TORCH.get(), properties), Item.Properties::new));
   public static final RegistryObject<Item> DOUBLE_STONE_TORCH_ITEM = registerItem("double_compacted_stone_torch", item(properties -> new WallOrFloorItem(DOUBLE_COMPACTED_STONE_TORCH.get(), DOUBLE_COMPACTED_STONE_WALL_TORCH.get(), properties), Item.Properties::new));
+
+  public static final RegistryObject<IRecipeSerializer<?>> IMPACTER_RECIPE = registerRecipeSerializer("impacter_recipe", () -> new SpecialRecipeSerializer<>(ImpacterRecipe::new));
+
+  public static <T extends SoundEvent> RegistryObject<T> registerSoundEvent (final String name, final Supplier<T> supplier) {
+    return SOUND.register(name, supplier);
+  }
+
+  public static <T extends IRecipeSerializer<?>> RegistryObject<T> registerRecipeSerializer (final String name, final Supplier<T> supplier) {
+    return SERIALIZERS.register(name, supplier);
+  }
 
   private static <T extends Item> RegistryObject<T> registerItem(final String name, final Supplier<T> supplier) {
     return ITEMS.register(name, supplier);

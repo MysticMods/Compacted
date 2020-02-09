@@ -12,7 +12,15 @@
   "item.compacted.compacted_hammer": "Compacted Hammer",
   "item.compacted.double_compacted_hammer": "Double-Compacted Hammer",
   "item.compacted.pocket_compacter": "Pocket Compacter",
+  "item.compacted.pocket_impacter": "Pocket Impacter",
   "tooltip.compacted.pocket_compacter.desc1": "Converts cobblestone in your inventory into various levels of compacted cobblestone.",
-  "tooltip.compacted.pocket_compacter.desc2": "Functions more rapidly when enchanted with Efficiency."
+  "tooltip.compacted.pocket_compacter.desc2": "Functions more rapidly when enchanted with Efficiency.",
+  "tooltip.compacted.pocket_impacter.desc1": "Contains %s cobblestone. %s",
+  "tooltip.compacted.pocket_impacter.desc2": "Consumes cobblestone from your inventory. Can be crafted shapelessly to extract cobblestone.",
+  "tooltip.compacted.pocket_impacter.desc3": "Can also be used to place cobblestone from its reserves, and will instantly break cobblestone.",
+  "tooltip.compacted.impacter_active": "Active.",
+  "tooltip.compacted.impacter_inactive": "Inactive.",
+  "tooltip.compacted.hold_shift": "[Hold shift for more]",
+  "tooltip.compacted.sneak_right_click": "Sneak-right-click to toggle active/inactive."
 }
 

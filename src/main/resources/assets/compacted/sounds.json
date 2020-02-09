@@ -1,0 +1,9 @@
+{
+  "ding": {
+    "category": "player",
+    "sounds": [
+      "compacted:item/ding"
+    ],
+    "subtitle": "subtitles.compacted.item.toggled"
+  }
+}
