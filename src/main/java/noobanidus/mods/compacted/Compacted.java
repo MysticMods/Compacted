@@ -1,7 +1,11 @@
 package noobanidus.mods.compacted;
 
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.Tag;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
@@ -16,6 +20,8 @@ import noobanidus.mods.compacted.events.ClientRenderEvents;
 import noobanidus.mods.compacted.init.Registry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.function.Function;
 
 @Mod(Compacted.MODID)
 public class Compacted {
@@ -64,6 +70,19 @@ public class Compacted {
     @Override
     public ItemStack createIcon() {
       return new ItemStack(Registry.COMPACTED_HAMMER.get());
+    }
+  }
+
+  public static class Tags {
+    public static Tag<Item> COMPACTED_COBBLESTONE = itemTag("forge", "compacted/cobblestone/single");
+    public static Tag<Item> DOUBLE_COMPACTED_COBBLESTONE = itemTag("forge", "compacted/cobblestone/double");
+
+    static <T extends Tag<?>> T tag(Function<ResourceLocation, T> creator, String modid, String name) {
+      return creator.apply(new ResourceLocation(modid, name));
+    }
+
+    static Tag<Item> itemTag(String modid, String name) {
+      return tag(ItemTags.Wrapper::new, modid, name);
     }
   }
 }

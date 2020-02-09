@@ -1,6 +1,5 @@
 {
 	"credit": "Made with Blockbench",
-	"parent": "generated/handheld",
 	"textures": {
 		"particle": "minecraft:block/piston_top",
 		"platform": "minecraft:block/piston_top",

@@ -5,9 +5,9 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.*;
 import net.minecraft.item.crafting.IRecipeSerializer;
+import net.minecraft.item.crafting.RepairItemRecipe;
 import net.minecraft.item.crafting.SpecialRecipeSerializer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -15,13 +15,11 @@ import net.minecraftforge.registries.ForgeRegistries;
 import noobanidus.mods.compacted.Compacted;
 import noobanidus.mods.compacted.blocks.StoneTorchBlock;
 import noobanidus.mods.compacted.blocks.WallStoneTorchBlock;
-import noobanidus.mods.compacted.items.HammerItem;
-import noobanidus.mods.compacted.items.HammerItemProperties;
-import noobanidus.mods.compacted.items.PocketCompacter;
-import noobanidus.mods.compacted.items.PocketImpacter;
+import noobanidus.mods.compacted.items.*;
 import noobanidus.mods.compacted.materials.CompactedStoneMaterial;
 import noobanidus.mods.compacted.materials.DoubleCompactedStoneMaterial;
 import noobanidus.mods.compacted.recipes.ImpacterRecipe;
+import noobanidus.mods.compacted.recipes.RepairRecipe;
 
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -54,9 +52,21 @@ public class Registry {
   public static final RegistryObject<Item> COMPACTED_ROD = registerItem("compacted_rod", item(Item::new, Item.Properties::new));
   public static final RegistryObject<Item> DOUBLE_COMPACTED_ROD = registerItem("double_compacted_rod", item(Item::new, Item.Properties::new));
 
-  public static final RegistryObject<Item> STONE_HAMMER = registerItem("stone_hammer", hammer(HammerItem::new, () -> new HammerItemProperties().attackDamage(6).attackSpeed(-3.5f).tier(ItemTier.STONE).width(1)));
-  public static final RegistryObject<Item> COMPACTED_HAMMER = registerItem("compacted_hammer", hammer(HammerItem::new, () -> new HammerItemProperties().attackDamage(8).attackSpeed(-3.5f).tier(CompactedStoneMaterial.MATERIAL).width(1)));
-  public static final RegistryObject<Item> DOUBLE_COMPACTED_HAMMER = registerItem("double_compacted_hammer", hammer(HammerItem::new, () -> new HammerItemProperties().attackDamage(10).attackSpeed(-3.5f).tier(DoubleCompactedStoneMaterial.MATERIAL).width(1)));
+  private static Supplier<ToolItemProperties> STONE = () -> new ToolItemProperties().attackDamage(6).attackSpeed(-3.5f).tier(ItemTier.STONE).width(1);
+  private static Supplier<ToolItemProperties> COMPACTED = () -> new ToolItemProperties().attackDamage(8).attackSpeed(-3.5f).tier(CompactedStoneMaterial.MATERIAL).width(1);
+  private static Supplier<ToolItemProperties> DOUBLE = () -> new ToolItemProperties().attackDamage(10).attackSpeed(-3.5f).tier(DoubleCompactedStoneMaterial.MATERIAL).width(1);
+
+  public static final RegistryObject<Item> STONE_HAMMER = registerItem("stone_hammer", tool(HammerItem::new, STONE));
+  public static final RegistryObject<Item> COMPACTED_HAMMER = registerItem("compacted_hammer", tool(HammerItem::new, COMPACTED));
+  public static final RegistryObject<Item> DOUBLE_COMPACTED_HAMMER = registerItem("double_compacted_hammer", tool(HammerItem::new, DOUBLE));
+
+  public static final RegistryObject<Item> STONE_EXCAVATOR = registerItem("stone_excavator", tool(ExcavatorItem::new, STONE));
+  public static final RegistryObject<Item> COMPACTED_EXCAVATOR = registerItem("compacted_excavator", tool(ExcavatorItem::new, COMPACTED));
+  public static final RegistryObject<Item> DOUBLE_COMPACTED_EXCAVATOR = registerItem("double_compacted_excavator", tool(ExcavatorItem::new, DOUBLE));
+
+  public static final RegistryObject<Item> STONE_HEAVY_AXE = registerItem("stone_heavy_axe", tool(HeavyAxeItem::new, STONE));
+  public static final RegistryObject<Item> COMPACTED_HEAVY_AXE = registerItem("compacted_heavy_axe", tool(HeavyAxeItem::new, COMPACTED));
+  public static final RegistryObject<Item> DOUBLE_COMPACTED_HEAVY_AXE = registerItem("double_compacted_heavy_axe", tool(HeavyAxeItem::new, DOUBLE));
 
   public static final RegistryObject<Item> POCKET_COMPACTER = registerItem("pocket_compacter", item(PocketCompacter::new, () -> new Item.Properties().rarity(Rarity.UNCOMMON).maxDamage(620)));
   public static final RegistryObject<Item> POCKET_IMPACTER = registerItem("pocket_impacter", item(PocketImpacter::new, () -> new Item.Properties().rarity(Rarity.EPIC)));
@@ -66,6 +76,7 @@ public class Registry {
   public static final RegistryObject<Item> DOUBLE_STONE_TORCH_ITEM = registerItem("double_compacted_stone_torch", item(properties -> new WallOrFloorItem(DOUBLE_COMPACTED_STONE_TORCH.get(), DOUBLE_COMPACTED_STONE_WALL_TORCH.get(), properties), Item.Properties::new));
 
   public static final RegistryObject<IRecipeSerializer<?>> IMPACTER_RECIPE = registerRecipeSerializer("impacter_recipe", () -> new SpecialRecipeSerializer<>(ImpacterRecipe::new));
+  public static final RegistryObject<IRecipeSerializer<?>> REPAIR_RECIPE = registerRecipeSerializer("repair_recipe", () -> new SpecialRecipeSerializer<>(RepairRecipe::new));
 
   public static <T extends SoundEvent> RegistryObject<T> registerSoundEvent (final String name, final Supplier<T> supplier) {
     return SOUND.register(name, supplier);
@@ -102,7 +113,7 @@ public class Registry {
     return () -> creator.apply(properties.get().group(Compacted.GROUP));
   }
 
-  private static Supplier<Item> hammer(Function<HammerItemProperties, HammerItem> creator, Supplier<HammerItemProperties> properties) {
+  private static Supplier<Item> tool(Function<ToolItemProperties, Item> creator, Supplier<ToolItemProperties> properties) {
     return () -> creator.apply(properties.get().setGroup(Compacted.GROUP));
   }
 }

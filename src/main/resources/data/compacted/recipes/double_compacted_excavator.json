@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#X#",
+    " X "
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:rods/compacted/cobblestone/double"
+    },
+    "#": {
+      "tag": "forge:compacted/cobblestone/double"
+    }
+  },
+  "result": {
+    "item": "compacted:double_compacted_excavator"
+  }
+}

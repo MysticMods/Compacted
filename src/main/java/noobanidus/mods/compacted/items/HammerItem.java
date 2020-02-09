@@ -24,7 +24,7 @@ public class HammerItem extends ToolItem implements EffectiveToolItem, SizedTool
 
   private final int width;
 
-  public HammerItem(HammerItemProperties builder) {
+  public HammerItem(ToolItemProperties builder) {
     super((float) builder.getAttackDamage(), builder.getAttackSpeed(), builder.getTier(), EFFECTIVE_ON, builder.addToolType(ToolType.get("hammer"), builder.getTier().getHarvestLevel()));
     this.width = builder.getWidth();
   }

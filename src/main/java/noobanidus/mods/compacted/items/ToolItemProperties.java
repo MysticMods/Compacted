@@ -4,13 +4,13 @@ import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 
-public class HammerItemProperties extends Item.Properties {
+public class ToolItemProperties extends Item.Properties {
   private int width;
   private IItemTier tier;
   private int attackDamage;
   private float attackSpeed;
 
-  public HammerItemProperties() {
+  public ToolItemProperties() {
     super();
   }
 
@@ -18,7 +18,7 @@ public class HammerItemProperties extends Item.Properties {
     return width;
   }
 
-  public HammerItemProperties width(int width) {
+  public ToolItemProperties width(int width) {
     this.width = width;
     return this;
   }
@@ -27,7 +27,7 @@ public class HammerItemProperties extends Item.Properties {
     return tier;
   }
 
-  public HammerItemProperties tier(IItemTier tier) {
+  public ToolItemProperties tier(IItemTier tier) {
     this.tier = tier;
     return this;
   }
@@ -36,7 +36,7 @@ public class HammerItemProperties extends Item.Properties {
     return attackDamage;
   }
 
-  public HammerItemProperties attackDamage(int attackDamage) {
+  public ToolItemProperties attackDamage(int attackDamage) {
     this.attackDamage = attackDamage;
     return this;
   }
@@ -45,12 +45,12 @@ public class HammerItemProperties extends Item.Properties {
     return attackSpeed;
   }
 
-  public HammerItemProperties attackSpeed(float attackSpeed) {
+  public ToolItemProperties attackSpeed(float attackSpeed) {
     this.attackSpeed = attackSpeed;
     return this;
   }
 
-  public HammerItemProperties setGroup (ItemGroup group) {
+  public ToolItemProperties setGroup (ItemGroup group) {
     super.group(group);
     return this;
   }
