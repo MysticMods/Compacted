@@ -30,6 +30,10 @@ public class BreakUtil {
     if (!(tool.getItem() instanceof EffectiveToolItem)) return;
 
     BlockState originalState = world.getBlockState(pos);
+    if (originalState.getBlock() == Blocks.TORCH || originalState.getBlockHardness(world, pos) == 0 && originalState.getHarvestTool() == null) {
+      return;
+    }
+
     world.setBlockState(pos, Blocks.GLASS.getDefaultState());
     RayTraceResult ray = rayTrace(world, player);
     world.setBlockState(pos, originalState);
