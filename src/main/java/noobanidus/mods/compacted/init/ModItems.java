@@ -185,9 +185,9 @@ public class ModItems {
             .addCriterion("has_rod", p.hasItem(CompactedTags.Items.STONE_ROD))
             .build(p, "stone_heavy_axe_from_cobblestone");
         ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 1)
-            .patternLine(" # ")
-            .patternLine("#X#")
-            .patternLine(" X ")
+            .patternLine("##")
+            .patternLine("#X")
+            .patternLine(" X")
             .key('X', CompactedTags.Items.STONE_ROD)
             .key('#', Tags.Items.STONE)
             .addCriterion("has_cobblestone", p.hasItem(Tags.Items.STONE))
