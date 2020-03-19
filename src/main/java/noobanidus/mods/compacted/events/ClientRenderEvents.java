@@ -1,16 +1,16 @@
 package noobanidus.mods.compacted.events;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.MatrixApplyingVertexBuilder;
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.PlayerController;
-import net.minecraft.client.renderer.ActiveRenderInfo;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.DestroyBlockProgress;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.texture.AtlasTexture;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.model.ModelBakery;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -27,23 +27,23 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import noobanidus.mods.compacted.items.SizedToolItem;
 import noobanidus.mods.compacted.util.BreakUtil;
-import org.lwjgl.opengl.GL11;
 
-import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 @OnlyIn(Dist.CLIENT)
 public class ClientRenderEvents {
   @SubscribeEvent(priority = EventPriority.LOW)
   public static void renderExtraBlockStuff(RenderWorldLastEvent event) {
-    PlayerController controller = Minecraft.getInstance().playerController;
+    Minecraft mc = Minecraft.getInstance();
+    PlayerController controller = mc.playerController;
 
-    if (controller == null) {
+    if (controller == null || mc.world == null) {
       return;
     }
 
     PlayerEntity player = Minecraft.getInstance().player;
-    if (player.isSneaking()) {
+    if (player == null || player.isSneaking()) {
       return;
     }
     ItemStack tool = player.getHeldItemMainhand();
@@ -58,19 +58,30 @@ public class ClientRenderEvents {
         return;
       }
 
+      MatrixStack stack = event.getMatrixStack();
+
       BlockRayTraceResult trace = (BlockRayTraceResult) ray;
       Set<BlockPos> positions = BreakUtil.nearbyBlocks(tool, trace.getPos(), trace.getFace(), player.world, player);
+      ActiveRenderInfo info = mc.gameRenderer.getActiveRenderInfo();
+      Vec3d vec3d = info.getProjectedView();
+      double d0 = vec3d.getX();
+      double d1 = vec3d.getY();
+      double d2 = vec3d.getZ();
+
       for (BlockPos position : positions) {
-        event.getContext().drawSelectionBox(Minecraft.getInstance().gameRenderer.getActiveRenderInfo(), new BlockRayTraceResult(new Vec3d(0, 0, 0), trace.getFace(), position, false), 0);
+        IVertexBuilder ivertexBuilder = mc.getBufferBuilders().getEntityVertexConsumers().getBuffer(RenderType.getLines());
+        mc.worldRenderer.drawBlockOutline(stack, ivertexBuilder, info.getRenderViewEntity(), d0, d1, d2, position, mc.world.getBlockState(position));
       }
 
+      mc.getBufferBuilders().getEntityVertexConsumers().draw(RenderType.getLines());
+
       if (controller.getIsHittingBlock()) {
-        drawBlockDamage(player.world, Tessellator.getInstance(), Tessellator.getInstance().getBuffer(), Minecraft.getInstance().gameRenderer.getActiveRenderInfo(), positions, trace.getPos());
+        drawBlockDamage(stack, player.world, info, positions, trace.getPos());
       }
     }
   }
 
-  private static void preRenderDamagedBlocks() {
+/*  private static void preRenderDamagedBlocks() {
     GlStateManager.blendFuncSeparate(GlStateManager.SourceFactor.DST_COLOR, GlStateManager.DestFactor.SRC_COLOR, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
     GlStateManager.enableBlend();
     GlStateManager.color4f(1.0F, 1.0F, 1.0F, 0.5F);
@@ -88,12 +99,13 @@ public class ClientRenderEvents {
     GlStateManager.enableAlphaTest();
     GlStateManager.depthMask(true);
     GlStateManager.popMatrix();
-  }
+  }*/
 
-  public static void drawBlockDamage(World world, Tessellator tessellator, BufferBuilder bufferBuilder, ActiveRenderInfo activeRenderInfo, Set<BlockPos> positions, BlockPos origin) {
+  @SuppressWarnings("deprecation")
+  public static boolean drawBlockDamage(MatrixStack stack, World world, ActiveRenderInfo activeRenderInfo, Set<BlockPos> positions, BlockPos origin) {
     DestroyBlockProgress progress = null;
 
-    for (Map.Entry<Integer, DestroyBlockProgress> entry : Minecraft.getInstance().worldRenderer.damagedBlocks.entrySet()) {
+    for (Int2ObjectMap.Entry<DestroyBlockProgress> entry : Minecraft.getInstance().worldRenderer.damagedBlocks.int2ObjectEntrySet()) {
       if (entry.getValue().getPosition().equals(origin)) {
         progress = entry.getValue();
         break;
@@ -101,18 +113,22 @@ public class ClientRenderEvents {
     }
 
     if (progress == null) {
-      return;
+      return false;
     }
+
+    Minecraft mc = Minecraft.getInstance();
+    RenderTypeBuffers buffers = mc.getBufferBuilders();
 
     double d0 = activeRenderInfo.getProjectedView().x;
     double d1 = activeRenderInfo.getProjectedView().y;
     double d2 = activeRenderInfo.getProjectedView().z;
 
-    Minecraft.getInstance().getTextureManager().bindTexture(AtlasTexture.LOCATION_BLOCKS_TEXTURE);
-    preRenderDamagedBlocks();
-    bufferBuilder.begin(GL11.GL_QUADS, DefaultVertexFormats.BLOCK);
-    bufferBuilder.setTranslation(-d0, -d1, -d2);
-    bufferBuilder.noColor();
+    boolean drew = false;
+
+    IRenderTypeBuffer.Impl vertices = buffers.getEffectVertexConsumers();
+    RenderType type = ModelBakery.BLOCK_DESTRUCTION_RENDER_LAYERS.get(progress.getPartialBlockDamage());
+    IVertexBuilder builder = vertices.getBuffer(type);
+    IVertexBuilder ivertexbuilder1 = new MatrixApplyingVertexBuilder(builder, stack.peek());
 
     for (BlockPos blockpos : positions) {
       TileEntity te = world.getTileEntity(blockpos);
@@ -121,13 +137,16 @@ public class ClientRenderEvents {
       if (!hasBreak) {
         BlockState state = world.getBlockState(blockpos);
         if (state.getMaterial() != Material.AIR) {
-          Minecraft.getInstance().getBlockRendererDispatcher().renderBlockDamage(state, blockpos, Minecraft.getInstance().worldRenderer.destroyBlockIcons[progress.getPartialBlockDamage()], world);
+          stack.push();
+          stack.translate((double) blockpos.getX() - d0, (double) blockpos.getY() - d1, (double) blockpos.getZ() - d2);
+          mc.getBlockRendererDispatcher().renderDamage(Objects.requireNonNull(mc.world).getBlockState(blockpos), blockpos, mc.world, stack, ivertexbuilder1);
+          stack.pop();
+          drew = true;
         }
       }
     }
 
-    tessellator.draw();
-    bufferBuilder.setTranslation(0.0D, 0.0D, 0.0D);
-    postRenderDamagedBlocks();
+    vertices.draw(type);
+    return drew;
   }
 }

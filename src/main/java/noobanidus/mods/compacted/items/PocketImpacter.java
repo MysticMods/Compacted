@@ -18,9 +18,7 @@ import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.state.IProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -33,7 +31,6 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.items.wrapper.InvWrapper;
-import noobanidus.mods.compacted.init.ModSounds;
 import noobanidus.mods.compacted.network.Networking;
 import noobanidus.mods.compacted.network.RightClickedEmpty;
 
@@ -224,7 +221,7 @@ public class PocketImpacter extends Item {
       BlockState blockstate = Blocks.COBBLESTONE.getStateForPlacement(context);
       World world = context.getWorld();
       BlockPos blockpos = context.getPos();
-      if (blockstate == null || !canPlace(context, blockstate, playerentity)) {
+      if (blockstate == null || !canPlace(context, blockstate)) {
         return ActionResultType.FAIL;
       } else if (!world.setBlockState(blockpos, blockstate, 11)) {
         return ActionResultType.FAIL;
@@ -275,8 +272,9 @@ public class PocketImpacter extends Item {
     return property.parseValue(value).map((p) -> state.with(property, p)).orElse(state);
   }
 
-  private boolean canPlace(BlockItemUseContext context, BlockState state, PlayerEntity playerentity) {
+  private boolean canPlace(BlockItemUseContext selection, BlockState state) {
+    PlayerEntity playerentity = selection.getPlayer();
     ISelectionContext iselectioncontext = playerentity == null ? ISelectionContext.dummy() : ISelectionContext.forEntity(playerentity);
-    return (state.isValidPosition(context.getWorld(), context.getPos())) && context.getWorld().func_217350_a(state, context.getPos(), iselectioncontext);
+    return (state.isValidPosition(selection.getWorld(), selection.getPos())) && selection.getWorld().canPlace(state, selection.getPos(), iselectioncontext);
   }
 }
