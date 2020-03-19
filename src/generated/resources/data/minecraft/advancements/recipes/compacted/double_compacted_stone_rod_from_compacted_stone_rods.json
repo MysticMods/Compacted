@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:double_compacted_stone_rod_from_compacted_stone_rods"
+    ]
+  },
+  "criteria": {
+    "has_compacted_stone_rod": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:rods/stone/compacted/single"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:double_compacted_stone_rod_from_compacted_stone_rods"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_compacted_stone_rod",
+      "has_the_recipe"
+    ]
+  ]
+}

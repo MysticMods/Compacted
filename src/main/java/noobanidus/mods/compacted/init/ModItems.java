@@ -147,7 +147,7 @@ public class ModItems {
       })
       .register();
 
-  public static final RegistryEntry<ExcavatorItem> DOUBLE_COMPACTED_EXCAVATOR = REGISTRATE.item("double_compacted_hammer", (b) -> new ExcavatorItem(DOUBLE.get()))
+  public static final RegistryEntry<ExcavatorItem> DOUBLE_COMPACTED_EXCAVATOR = REGISTRATE.item("double_compacted_excavator", (b) -> new ExcavatorItem(DOUBLE.get()))
       .recipe((ctx, p) -> {
         ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 1)
             .patternLine(" # ")

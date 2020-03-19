@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#X#",
+    " X "
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:rods/stone"
+    },
+    "#": {
+      "tag": "forge:cobblestone"
+    }
+  },
+  "result": {
+    "item": "compacted:stone_excavator"
+  }
+}

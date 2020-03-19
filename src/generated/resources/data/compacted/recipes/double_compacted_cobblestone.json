@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:compacted/cobblestone/single"
+    },
+    {
+      "tag": "forge:compacted/cobblestone/single"
+    },
+    {
+      "tag": "forge:compacted/cobblestone/single"
+    },
+    {
+      "tag": "forge:compacted/cobblestone/single"
+    },
+    {
+      "tag": "forge:compacted/cobblestone/single"
+    },
+    {
+      "tag": "forge:compacted/cobblestone/single"
+    },
+    {
+      "tag": "forge:compacted/cobblestone/single"
+    },
+    {
+      "tag": "forge:compacted/cobblestone/single"
+    },
+    {
+      "tag": "forge:compacted/cobblestone/single"
+    }
+  ],
+  "result": {
+    "item": "compacted:double_compacted_cobblestone"
+  }
+}

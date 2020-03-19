@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:compacted_heavy_axe_from_stone_heavy_axes"
+    ]
+  },
+  "criteria": {
+    "has_heavy_axe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "compacted:stone_heavy_axe"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:compacted_heavy_axe_from_stone_heavy_axes"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_heavy_axe",
+      "has_the_recipe"
+    ]
+  ]
+}

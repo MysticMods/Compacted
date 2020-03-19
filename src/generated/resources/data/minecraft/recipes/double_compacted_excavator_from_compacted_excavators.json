@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "compacted:compacted_excavator"
+    },
+    {
+      "item": "compacted:compacted_excavator"
+    },
+    {
+      "item": "compacted:compacted_excavator"
+    },
+    {
+      "item": "compacted:compacted_excavator"
+    },
+    {
+      "item": "compacted:compacted_excavator"
+    },
+    {
+      "item": "compacted:compacted_excavator"
+    },
+    {
+      "item": "compacted:compacted_excavator"
+    },
+    {
+      "item": "compacted:compacted_excavator"
+    },
+    {
+      "item": "compacted:compacted_excavator"
+    }
+  ],
+  "result": {
+    "item": "compacted:double_compacted_hammer"
+  }
+}

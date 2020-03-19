@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "compacted:double_compacted_hammer"
+    ]
+  },
+  "criteria": {
+    "has_cobblestone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:compacted/cobblestone/double"
+          }
+        ]
+      }
+    },
+    "has_rod": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:rods/stone/compacted/double"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "compacted:double_compacted_hammer"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cobblestone",
+      "has_rod",
+      "has_the_recipe"
+    ]
+  ]
+}

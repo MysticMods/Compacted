@@ -1,6 +1,7 @@
 package noobanidus.mods.compacted.init;
 
 import com.tterrag.registrate.providers.ProviderType;
+import com.tterrag.registrate.providers.RegistrateDataProvider;
 import com.tterrag.registrate.util.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import net.minecraft.block.Block;
@@ -9,6 +10,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.Items;
+import net.minecraft.item.WallOrFloorItem;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
@@ -90,7 +92,7 @@ public class ModBlocks {
 
   public static final RegistryEntry<StoneTorchBlock> STONE_TORCH = REGISTRATE.block("stone_torch", Material.MISCELLANEOUS, StoneTorchBlock::new)
       .properties(o -> o.hardnessAndResistance(0f, 0f).lightValue(14).sound(SoundType.STONE).doesNotBlockMovement())
-      .item()
+      .item((block, props) -> new WallOrFloorItem(block, ModBlocks.STONE_WALL_TORCH.get(), props))
       .model((ctx, p) -> p.torch("stone_torch", new ResourceLocation(Compacted.MODID, "block/stone_torch")))
       .build()
       .blockstate(NonNullBiConsumer.noop())
@@ -114,12 +116,12 @@ public class ModBlocks {
   public static final RegistryEntry<WallStoneTorchBlock> STONE_WALL_TORCH = REGISTRATE.block("wall_stone_torch", Material.MISCELLANEOUS, WallStoneTorchBlock::new)
       .properties(o -> o.hardnessAndResistance(0f, 0f).lightValue(14).sound(SoundType.STONE).doesNotBlockMovement())
       .blockstate(NonNullBiConsumer.noop())
-      .lang("")
+      .setData(ProviderType.LANG, NonNullBiConsumer.noop())
       .register();
 
   public static final RegistryEntry<StoneTorchBlock> COMPACTED_STONE_TORCH = REGISTRATE.block("compacted_stone_torch", Material.MISCELLANEOUS, StoneTorchBlock::new)
       .properties(o -> o.hardnessAndResistance(0f, 0f).lightValue(14).sound(SoundType.STONE).doesNotBlockMovement())
-      .item()
+      .item((block, props) -> new WallOrFloorItem(block, ModBlocks.COMPACTED_STONE_WALL_TORCH.get(), props))
       .model((ctx, p) -> p.torch("compacted_stone_torch", new ResourceLocation(Compacted.MODID, "block/compacted_stone_torch")))
       .build()
       .blockstate(NonNullBiConsumer.noop())
@@ -142,12 +144,12 @@ public class ModBlocks {
   public static final RegistryEntry<WallStoneTorchBlock> COMPACTED_STONE_WALL_TORCH = REGISTRATE.block("compacted_wall_stone_torch", Material.MISCELLANEOUS, WallStoneTorchBlock::new)
       .properties(o -> o.hardnessAndResistance(0f, 0f).lightValue(14).sound(SoundType.STONE).doesNotBlockMovement())
       .blockstate(NonNullBiConsumer.noop())
-      .lang("")
+      .setData(ProviderType.LANG, NonNullBiConsumer.noop())
       .register();
 
   public static final RegistryEntry<StoneTorchBlock> DOUBLE_COMPACTED_STONE_TORCH = REGISTRATE.block("double_compacted_stone_torch", Material.MISCELLANEOUS, StoneTorchBlock::new)
       .properties(o -> o.hardnessAndResistance(0f, 0f).lightValue(14).sound(SoundType.STONE).doesNotBlockMovement())
-      .item()
+      .item((block, props) -> new WallOrFloorItem(block, ModBlocks.DOUBLE_COMPACTED_STONE_WALL_TORCH.get(), props))
       .model((ctx, p) -> p.torch("double_compacted_stone_torch", new ResourceLocation(Compacted.MODID, "block/double_compacted_stone_torch")))
       .build()
       .blockstate(NonNullBiConsumer.noop())
@@ -167,7 +169,7 @@ public class ModBlocks {
   public static final RegistryEntry<WallStoneTorchBlock> DOUBLE_COMPACTED_STONE_WALL_TORCH = REGISTRATE.block("double_compacted_wall_stone_torch", Material.MISCELLANEOUS, WallStoneTorchBlock::new)
       .properties(o -> o.hardnessAndResistance(0f, 0f).lightValue(14).sound(SoundType.STONE).doesNotBlockMovement())
       .blockstate(NonNullBiConsumer.noop())
-      .lang("")
+      .setData(ProviderType.LANG, NonNullBiConsumer.noop())
       .register();
 
   public static void load () {

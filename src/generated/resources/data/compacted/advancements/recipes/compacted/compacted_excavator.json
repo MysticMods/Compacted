@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "compacted:compacted_excavator"
+    ]
+  },
+  "criteria": {
+    "has_cobblestone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:compacted/cobblestone/single"
+          }
+        ]
+      }
+    },
+    "has_rod": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:rods/stone/compacted/single"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "compacted:compacted_excavator"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cobblestone",
+      "has_rod",
+      "has_the_recipe"
+    ]
+  ]
+}

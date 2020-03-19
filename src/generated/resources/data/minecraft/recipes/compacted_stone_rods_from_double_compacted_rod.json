@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:rods/stone/compacted/double"
+    }
+  ],
+  "result": {
+    "item": "compacted:compacted_rod",
+    "count": 9
+  }
+}

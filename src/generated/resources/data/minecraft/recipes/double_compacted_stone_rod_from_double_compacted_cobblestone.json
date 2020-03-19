@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X",
+    "X"
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:compacted/cobblestone/double"
+    }
+  },
+  "result": {
+    "item": "compacted:double_compacted_rod"
+  }
+}

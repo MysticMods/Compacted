@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:double_compacted_excavator_from_compacted_excavators"
+    ]
+  },
+  "criteria": {
+    "has_compacted_excavator": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "compacted:compacted_excavator"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:double_compacted_excavator_from_compacted_excavators"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_compacted_excavator",
+      "has_the_recipe"
+    ]
+  ]
+}

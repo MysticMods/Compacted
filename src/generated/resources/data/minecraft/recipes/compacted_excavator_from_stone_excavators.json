@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "compacted:stone_excavator"
+    },
+    {
+      "item": "compacted:stone_excavator"
+    },
+    {
+      "item": "compacted:stone_excavator"
+    },
+    {
+      "item": "compacted:stone_excavator"
+    },
+    {
+      "item": "compacted:stone_excavator"
+    },
+    {
+      "item": "compacted:stone_excavator"
+    },
+    {
+      "item": "compacted:stone_excavator"
+    },
+    {
+      "item": "compacted:stone_excavator"
+    },
+    {
+      "item": "compacted:stone_excavator"
+    }
+  ],
+  "result": {
+    "item": "compacted:compacted_excavator"
+  }
+}

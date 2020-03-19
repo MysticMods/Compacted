@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "compacted:stone_heavy_axe"
+    },
+    {
+      "item": "compacted:stone_heavy_axe"
+    },
+    {
+      "item": "compacted:stone_heavy_axe"
+    },
+    {
+      "item": "compacted:stone_heavy_axe"
+    },
+    {
+      "item": "compacted:stone_heavy_axe"
+    },
+    {
+      "item": "compacted:stone_heavy_axe"
+    },
+    {
+      "item": "compacted:stone_heavy_axe"
+    },
+    {
+      "item": "compacted:stone_heavy_axe"
+    },
+    {
+      "item": "compacted:stone_heavy_axe"
+    }
+  ],
+  "result": {
+    "item": "compacted:compacted_heavy_axe"
+  }
+}

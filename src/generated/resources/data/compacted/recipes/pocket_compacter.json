@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RPR",
+    "PXP",
+    "RPR"
+  ],
+  "key": {
+    "R": {
+      "tag": "forge:rods/stone/compacted/double"
+    },
+    "X": {
+      "tag": "forge:compacted/cobblestone/double"
+    },
+    "P": {
+      "item": "minecraft:piston"
+    }
+  },
+  "result": {
+    "item": "compacted:pocket_compacter"
+  }
+}

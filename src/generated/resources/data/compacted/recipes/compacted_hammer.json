@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#X#",
+    " X "
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:rods/stone/compacted/single"
+    },
+    "#": {
+      "tag": "forge:compacted/cobblestone/single"
+    }
+  },
+  "result": {
+    "item": "compacted:compacted_hammer"
+  }
+}
