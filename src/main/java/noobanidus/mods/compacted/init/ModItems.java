@@ -9,6 +9,7 @@ import net.minecraft.item.ItemTier;
 import net.minecraft.item.Items;
 import net.minecraft.item.Rarity;
 import net.minecraftforge.common.Tags;
+import noobanidus.mods.compacted.Compacted;
 import noobanidus.mods.compacted.CompactedTags;
 import noobanidus.mods.compacted.items.*;
 import noobanidus.mods.compacted.materials.CompactedStoneMaterial;
@@ -19,9 +20,9 @@ import java.util.function.Supplier;
 import static noobanidus.mods.compacted.Compacted.REGISTRATE;
 
 public class ModItems {
-  private static Supplier<ToolItemProperties> STONE = () -> new ToolItemProperties().attackDamage(6).attackSpeed(-3.5f).tier(ItemTier.STONE).width(1);
-  private static Supplier<ToolItemProperties> COMPACTED = () -> new ToolItemProperties().attackDamage(8).attackSpeed(-3.5f).tier(CompactedStoneMaterial.MATERIAL).width(1);
-  private static Supplier<ToolItemProperties> DOUBLE = () -> new ToolItemProperties().attackDamage(10).attackSpeed(-3.5f).tier(DoubleCompactedStoneMaterial.MATERIAL).width(1);
+  private static Supplier<ToolItemProperties> STONE = () -> new ToolItemProperties().attackDamage(6).attackSpeed(-3.5f).tier(ItemTier.STONE).width(1).setGroup(Compacted.GROUP);
+  private static Supplier<ToolItemProperties> COMPACTED = () -> new ToolItemProperties().attackDamage(8).attackSpeed(-3.5f).tier(CompactedStoneMaterial.MATERIAL).width(1).setGroup(Compacted.GROUP);
+  private static Supplier<ToolItemProperties> DOUBLE = () -> new ToolItemProperties().attackDamage(10).attackSpeed(-3.5f).tier(DoubleCompactedStoneMaterial.MATERIAL).width(1).setGroup(Compacted.GROUP);
   public static final RegistryEntry<HammerItem> STONE_HAMMER = REGISTRATE.item("stone_hammer", (b) -> new HammerItem(STONE.get()))
       .recipe((ctx, p) -> {
         ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 1)
@@ -269,7 +270,7 @@ public class ModItems {
       .tag(CompactedTags.Items.STONE_ROD)
       .register();
 
-  public static final RegistryEntry<Item> COMPACTED_STONE_ROD = REGISTRATE.item("compacted_stone_rod", Item::new)
+  public static final RegistryEntry<Item> COMPACTED_STONE_ROD = REGISTRATE.item("compacted_rod", Item::new)
       .recipe((ctx, p) -> {
         ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 1)
             .patternLine("X")
@@ -297,7 +298,7 @@ public class ModItems {
       .tag(CompactedTags.Items.COMPACTED_STONE_ROD)
       .register();
 
-  public static final RegistryEntry<Item> DOUBLE_COMPACTED_STONE_ROD = REGISTRATE.item("compacted_stone_rod", Item::new)
+  public static final RegistryEntry<Item> DOUBLE_COMPACTED_STONE_ROD = REGISTRATE.item("double_compacted_rod", Item::new)
       .recipe((ctx, p) -> {
         ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 1)
             .patternLine("X")
@@ -356,4 +357,8 @@ public class ModItems {
               .addCriterion("has_piston", p.hasItem(Items.PISTON))
               .build(p))
       .register();
+
+  public static void load () {
+
+  }
 }

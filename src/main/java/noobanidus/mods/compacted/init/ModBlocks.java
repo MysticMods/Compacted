@@ -61,7 +61,6 @@ public class ModBlocks {
             .build(p, "cobblestone_from_compacted_cobblestone");
       })
       .item()
-      .defaultModel()
       .tag(CompactedTags.Items.COMPACTED_COBBLESTONE)
       .build()
       .tag(CompactedTags.Blocks.COMPACTED_COBBLESTONE)
@@ -84,7 +83,6 @@ public class ModBlocks {
               .build(p)
       )
       .item()
-      .defaultModel()
       .tag(CompactedTags.Items.DOUBLE_COMPACTED_COBBLESTONE)
       .build()
       .tag(CompactedTags.Blocks.DOUBLE_COMPACTED_COBBLESTONE)
@@ -116,6 +114,7 @@ public class ModBlocks {
   public static final RegistryEntry<WallStoneTorchBlock> STONE_WALL_TORCH = REGISTRATE.block("wall_stone_torch", Material.MISCELLANEOUS, WallStoneTorchBlock::new)
       .properties(o -> o.hardnessAndResistance(0f, 0f).lightValue(14).sound(SoundType.STONE).doesNotBlockMovement())
       .blockstate(NonNullBiConsumer.noop())
+      .lang("")
       .register();
 
   public static final RegistryEntry<StoneTorchBlock> COMPACTED_STONE_TORCH = REGISTRATE.block("compacted_stone_torch", Material.MISCELLANEOUS, StoneTorchBlock::new)
@@ -143,12 +142,13 @@ public class ModBlocks {
   public static final RegistryEntry<WallStoneTorchBlock> COMPACTED_STONE_WALL_TORCH = REGISTRATE.block("compacted_wall_stone_torch", Material.MISCELLANEOUS, WallStoneTorchBlock::new)
       .properties(o -> o.hardnessAndResistance(0f, 0f).lightValue(14).sound(SoundType.STONE).doesNotBlockMovement())
       .blockstate(NonNullBiConsumer.noop())
+      .lang("")
       .register();
 
   public static final RegistryEntry<StoneTorchBlock> DOUBLE_COMPACTED_STONE_TORCH = REGISTRATE.block("double_compacted_stone_torch", Material.MISCELLANEOUS, StoneTorchBlock::new)
       .properties(o -> o.hardnessAndResistance(0f, 0f).lightValue(14).sound(SoundType.STONE).doesNotBlockMovement())
       .item()
-      .model((ctx, p) -> p.torch("compacted_stone_torch", new ResourceLocation(Compacted.MODID, "block/compacted_stone_torch")))
+      .model((ctx, p) -> p.torch("double_compacted_stone_torch", new ResourceLocation(Compacted.MODID, "block/double_compacted_stone_torch")))
       .build()
       .blockstate(NonNullBiConsumer.noop())
       .recipe((ctx, p) -> {
@@ -167,5 +167,10 @@ public class ModBlocks {
   public static final RegistryEntry<WallStoneTorchBlock> DOUBLE_COMPACTED_STONE_WALL_TORCH = REGISTRATE.block("double_compacted_wall_stone_torch", Material.MISCELLANEOUS, WallStoneTorchBlock::new)
       .properties(o -> o.hardnessAndResistance(0f, 0f).lightValue(14).sound(SoundType.STONE).doesNotBlockMovement())
       .blockstate(NonNullBiConsumer.noop())
+      .lang("")
       .register();
+
+  public static void load () {
+
+  }
 }

@@ -25,6 +25,10 @@ public class CustomRegistrate extends AbstractRegistrate<CustomRegistrate> {
     return new CustomRegistrate(modid).registerEventListeners(FMLJavaModLoadingContext.get().getModEventBus());
   }
 
+  public <T extends IRecipeSerializer<?>> RecipeSerializerBuilder<T, CustomRegistrate> recipeSerializer(String name, Supplier<? extends T> factory) {
+    return recipeSerializer(this, name, factory);
+  }
+
   public <T extends IRecipeSerializer<?>> RecipeSerializerBuilder<T, CustomRegistrate> recipeSerializer(Supplier<? extends T> factory) {
     return recipeSerializer(this, factory);
   }
