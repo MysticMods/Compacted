@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "waterlogged=false,facing=east": { "model": "compacted:block/compacted_wall_stone_torch" },
+        "waterlogged=false,facing=south": { "model": "compacted:block/compacted_wall_stone_torch", "y": 90 },
+        "waterlogged=false,facing=west": { "model": "compacted:block/compacted_wall_stone_torch", "y": 180 },
+        "waterlogged=false,facing=north": { "model": "compacted:block/compacted_wall_stone_torch", "y": 270 },
+        "waterlogged=true,facing=east": { "model": "compacted:block/blue_compacted_wall_stone_torch" },
+        "waterlogged=true,facing=south": { "model": "compacted:block/blue_compacted_wall_stone_torch", "y": 90 },
+        "waterlogged=true,facing=west": { "model": "compacted:block/blue_compacted_wall_stone_torch", "y": 180 },
+        "waterlogged=true,facing=north": { "model": "compacted:block/blue_compacted_wall_stone_torch", "y": 270 }
+    }
+}

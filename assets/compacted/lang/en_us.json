@@ -1,0 +1,20 @@
+{
+  "itemGroup.compacted": "Compacted",
+  "block.compacted.compacted_cobblestone": "Compacted Cobblestone",
+  "block.compacted.double_compacted_cobblestone": "Double-Compacted Cobblestone",
+  "block.compacted.stone_torch": "Stone Torch",
+  "block.compacted.compacted_stone_torch": "Compacted Stone Torch",
+  "block.compacted.double_compacted_stone_torch": "Double-Compacted Stone Torch",
+  "item.compacted.stone_rod": "Stone Rod",
+  "item.compacted.compacted_rod": "Compacted Rod",
+  "item.compacted.double_compacted_rod": "Double-Compacted Rod",
+  "item.compacted.stone_hammer": "Stone Hammer",
+  "item.compacted.compacted_hammer": "Compacted Hammer",
+  "item.compacted.double_compacted_hammer": "Double-Compacted Hammer",
+  "item.compacted.pocket_compacter": "Pocket Compacter",
+  "tooltip.compacted.pocket_compacter.desc1": "Converts cobblestone in your inventory into various levels of compacted cobblestone.",
+  "tooltip.compacted.pocket_compacter.desc2": "Functions more rapidly when enchanted with Efficiency.",
+  "tooltip.compacted.pocket_impacter.desc1": "Consumes cobblestone from your inventory. Can be crafted shapelessly to extract cobblestone.",
+  "tooltip.compacted.pocket_impacter.desc2": "Can also be used to place cobblestone."
+}
+

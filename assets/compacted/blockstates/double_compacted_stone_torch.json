@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "waterlogged=false": { "model": "compacted:block/double_compacted_stone_torch" },
+        "waterlogged=true": { "model": "compacted:block/blue_double_compacted_stone_torch" }
+    }
+}

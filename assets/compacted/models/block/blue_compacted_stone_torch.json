@@ -1,0 +1,6 @@
+{
+    "parent": "block/template_torch",
+    "textures": {
+        "torch": "compacted:block/blue_compacted_stone_torch"
+    }
+}

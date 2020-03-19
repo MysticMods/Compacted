@@ -1,0 +1,6 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "compacted:item/double_compacted_hammer"
+    }
+}
