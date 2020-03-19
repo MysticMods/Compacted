@@ -176,9 +176,9 @@ public class ModItems {
   public static final RegistryEntry<HeavyAxeItem> STONE_HEAVY_AXE = REGISTRATE.item("stone_heavy_axe", (b) -> new HeavyAxeItem(STONE.get()))
       .recipe((ctx, p) -> {
         ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 1)
-            .patternLine(" # ")
-            .patternLine("#X#")
-            .patternLine(" X ")
+            .patternLine("##")
+            .patternLine("#X")
+            .patternLine(" X")
             .key('X', CompactedTags.Items.STONE_ROD)
             .key('#', Tags.Items.COBBLESTONE)
             .addCriterion("has_cobblestone", p.hasItem(Tags.Items.COBBLESTONE))
@@ -199,9 +199,9 @@ public class ModItems {
   public static final RegistryEntry<HeavyAxeItem> COMPACTED_HEAVY_AXE = REGISTRATE.item("compacted_heavy_axe", (b) -> new HeavyAxeItem(COMPACTED.get()))
       .recipe((ctx, p) -> {
         ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 1)
-            .patternLine(" # ")
-            .patternLine("#X#")
-            .patternLine(" X ")
+            .patternLine("##")
+            .patternLine("#X")
+            .patternLine(" X")
             .key('X', CompactedTags.Items.COMPACTED_STONE_ROD)
             .key('#', CompactedTags.Items.COMPACTED_COBBLESTONE)
             .addCriterion("has_cobblestone", p.hasItem(CompactedTags.Items.COMPACTED_COBBLESTONE))
@@ -225,9 +225,9 @@ public class ModItems {
   public static final RegistryEntry<HeavyAxeItem> DOUBLE_COMPACTED_HEAVY_AXE = REGISTRATE.item("double_compacted_heavy_axe", (b) -> new HeavyAxeItem(DOUBLE.get()))
       .recipe((ctx, p) -> {
         ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 1)
-            .patternLine(" # ")
-            .patternLine("#X#")
-            .patternLine(" X ")
+            .patternLine("##")
+            .patternLine("#X")
+            .patternLine(" X")
             .key('X', CompactedTags.Items.DOUBLE_COMPACTED_STONE_ROD)
             .key('#', CompactedTags.Items.DOUBLE_COMPACTED_COBBLESTONE)
             .addCriterion("has_cobblestone", p.hasItem(CompactedTags.Items.DOUBLE_COMPACTED_COBBLESTONE))
@@ -319,7 +319,7 @@ public class ModItems {
             .addCriterion("has_compacted_stone_rod", p.hasItem(CompactedTags.Items.COMPACTED_STONE_ROD))
             .build(p, "double_compacted_stone_rod_from_compacted_stone_rods");
       })
-      .tag(CompactedTags.Items.COMPACTED_STONE_ROD)
+      .tag(CompactedTags.Items.DOUBLE_COMPACTED_STONE_ROD)
       .register();
 
   public static final RegistryEntry<PocketCompacter> POCKET_COMPACTER = REGISTRATE.item("pocket_compacter", PocketCompacter::new)

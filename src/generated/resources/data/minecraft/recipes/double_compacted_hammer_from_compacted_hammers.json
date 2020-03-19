@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "compacted:compacted_hammer"
+    },
+    {
+      "item": "compacted:compacted_hammer"
+    },
+    {
+      "item": "compacted:compacted_hammer"
+    },
+    {
+      "item": "compacted:compacted_hammer"
+    },
+    {
+      "item": "compacted:compacted_hammer"
+    },
+    {
+      "item": "compacted:compacted_hammer"
+    },
+    {
+      "item": "compacted:compacted_hammer"
+    },
+    {
+      "item": "compacted:compacted_hammer"
+    },
+    {
+      "item": "compacted:compacted_hammer"
+    }
+  ],
+  "result": {
+    "item": "compacted:double_compacted_hammer"
+  }
+}

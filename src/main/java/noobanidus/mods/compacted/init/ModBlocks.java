@@ -34,6 +34,7 @@ public class ModBlocks {
         ctx.add("tooltip.compacted.impacter_inactive", "Inactive.");
         ctx.add("tooltip.compacted.hold_shift", "[Hold shift for more]");
         ctx.add("tooltip.compacted.sneak_right_click", "Sneak-right-click empty air to toggle active/inactive.");
+        ctx.add("subtitles.compacted.item.toggled", "Pocket Impacter toggled");
       }
     });
   }

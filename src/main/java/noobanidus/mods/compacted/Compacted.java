@@ -17,6 +17,7 @@ import noobanidus.mods.compacted.init.ModBlocks;
 import noobanidus.mods.compacted.init.ModItems;
 import noobanidus.mods.compacted.init.ModRecipes;
 import noobanidus.mods.compacted.init.ModSounds;
+import noobanidus.mods.compacted.network.Networking;
 import noobanidus.mods.compacted.registrate.CustomRegistrate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -57,6 +58,7 @@ public class Compacted {
   }
 
   private void modSetup(FMLCommonSetupEvent event) {
+    Networking.INSTANCE.registerMessages();
   }
 
   @OnlyIn(Dist.CLIENT)
