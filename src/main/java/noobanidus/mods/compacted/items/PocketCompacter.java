@@ -22,7 +22,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.wrapper.InvWrapper;
-import noobanidus.mods.compacted.init.Registry;
+import noobanidus.mods.compacted.init.ModBlocks;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -62,7 +62,7 @@ public class PocketCompacter extends Item {
         ItemStack inSlot = wrapped.getStackInSlot(i);
         if (inSlot.getItem() == Items.COBBLESTONE) {
           cobblestone.put(i, inSlot);
-        } else if (inSlot.getItem() == Registry.COMPACTED_COBBLESTONE_ITEM.get()) {
+        } else if (inSlot.getItem() == ModBlocks.COMPACTED_COBBLESTONE.get().asItem()) {
           compacted.put(i, inSlot);
         }
       }
@@ -71,7 +71,7 @@ public class PocketCompacter extends Item {
         int needed = 9;
         int count = cobblestone.values().stream().mapToInt(ItemStack::getCount).sum();
         if (count >= 9) {
-          ItemStack compactedStack = new ItemStack(Registry.COMPACTED_COBBLESTONE_ITEM.get(), 1);
+          ItemStack compactedStack = new ItemStack(ModBlocks.COMPACTED_COBBLESTONE.get(), 1);
           handleCompaction(player, inventory, wrapped, cobblestone, needed, compactedStack, stack, isSelected);
         }
       }
@@ -80,7 +80,7 @@ public class PocketCompacter extends Item {
         int needed = 9;
         int count = compacted.values().stream().mapToInt(ItemStack::getCount).sum();
         if (count >= 9) {
-          ItemStack compactedStack = new ItemStack(Registry.DOUBLE_COMPACTED_COBBLESTONE_ITEM.get(), 1);
+          ItemStack compactedStack = new ItemStack(ModBlocks.DOUBLE_COMPACTED_COBBLESTONE.get(), 1);
           handleCompaction(player, inventory, wrapped, compacted, needed, compactedStack, stack, isSelected);
         }
       }

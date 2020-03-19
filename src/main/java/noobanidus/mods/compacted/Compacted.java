@@ -1,11 +1,7 @@
 package noobanidus.mods.compacted;
 
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.Tag;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
@@ -17,11 +13,10 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import noobanidus.mods.compacted.events.ClientRenderEvents;
-import noobanidus.mods.compacted.init.Registry;
+import noobanidus.mods.compacted.init.ModItems;
+import noobanidus.mods.compacted.registrate.CustomRegistrate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.function.Function;
 
 @Mod(Compacted.MODID)
 public class Compacted {
@@ -30,10 +25,16 @@ public class Compacted {
   public static final Logger LOGGER = LogManager.getLogger(MODID);
   public static ItemGroup GROUP;
 
+  public static CustomRegistrate REGISTRATE;
+
   public Compacted() {
     //ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ConfigManager.COMMON_CONFIG);
+
+    REGISTRATE = CustomRegistrate.create(MODID);
+
     INSTANCE = this;
     GROUP = new CompactedItemGroup();
+    REGISTRATE.itemGroup(() -> GROUP);
 
     IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 
@@ -42,11 +43,6 @@ public class Compacted {
     DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
       modBus.addListener(this::clientSetup);
     });
-
-    Registry.BLOCKS.register(modBus);
-    Registry.ITEMS.register(modBus);
-    Registry.SERIALIZERS.register(modBus);
-    Registry.SOUND.register(modBus);
 
     MinecraftForge.EVENT_BUS.register(this);
   }
@@ -69,20 +65,8 @@ public class Compacted {
 
     @Override
     public ItemStack createIcon() {
-      return new ItemStack(Registry.COMPACTED_HAMMER.get());
+      return new ItemStack(ModItems.COMPACTED_HAMMER.get());
     }
   }
 
-  public static class Tags {
-    public static Tag<Item> COMPACTED_COBBLESTONE = itemTag("forge", "compacted/cobblestone/single");
-    public static Tag<Item> DOUBLE_COMPACTED_COBBLESTONE = itemTag("forge", "compacted/cobblestone/double");
-
-    static <T extends Tag<?>> T tag(Function<ResourceLocation, T> creator, String modid, String name) {
-      return creator.apply(new ResourceLocation(modid, name));
-    }
-
-    static Tag<Item> itemTag(String modid, String name) {
-      return tag(ItemTags.Wrapper::new, modid, name);
-    }
-  }
 }

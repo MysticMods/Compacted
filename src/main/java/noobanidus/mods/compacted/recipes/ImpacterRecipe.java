@@ -5,13 +5,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.SpecialRecipe;
+import net.minecraft.item.crafting.SpecialRecipeSerializer;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import noobanidus.mods.compacted.Compacted;
-import noobanidus.mods.compacted.init.Registry;
+import noobanidus.mods.compacted.init.ModItems;
+import noobanidus.mods.compacted.init.ModRecipes;
 
 public class ImpacterRecipe extends SpecialRecipe {
   public static ResourceLocation UID = new ResourceLocation(Compacted.MODID, "impacter");
@@ -33,7 +35,7 @@ public class ImpacterRecipe extends SpecialRecipe {
         continue;
       }
 
-      if (inSlot.getItem() == Registry.POCKET_IMPACTER.get()) {
+      if (inSlot.getItem() == ModItems.POCKET_IMPACTER.get()) {
         if (found) {
           return false;
         }
@@ -48,7 +50,7 @@ public class ImpacterRecipe extends SpecialRecipe {
   public ItemStack getCraftingResult(CraftingInventory inv) {
     ItemStack impacter = ItemStack.EMPTY;
     for (int i = 0; i < inv.getSizeInventory(); i++) {
-      if (inv.getStackInSlot(i).getItem() == Registry.POCKET_IMPACTER.get()) {
+      if (inv.getStackInSlot(i).getItem() == ModItems.POCKET_IMPACTER.get()) {
         impacter = inv.getStackInSlot(i);
         break;
       }
@@ -78,7 +80,7 @@ public class ImpacterRecipe extends SpecialRecipe {
   public NonNullList<ItemStack> getRemainingItems(CraftingInventory inv) {
     NonNullList<ItemStack> result = NonNullList.withSize(inv.getSizeInventory(), ItemStack.EMPTY);
     for (int i = 0; i < inv.getSizeInventory(); i++) {
-      if (inv.getStackInSlot(i).getItem() == Registry.POCKET_IMPACTER.get()) {
+      if (inv.getStackInSlot(i).getItem() == ModItems.POCKET_IMPACTER.get()) {
         result.set(i, inv.getStackInSlot(i));
         inv.setInventorySlotContents(i, ItemStack.EMPTY);
       }
@@ -93,6 +95,12 @@ public class ImpacterRecipe extends SpecialRecipe {
 
   @Override
   public IRecipeSerializer<?> getSerializer() {
-    return Registry.IMPACTER_RECIPE.get();
+    return ModRecipes.IMAPCTER_SERIALIZER.get();
+  }
+
+  public static class ImpacterSerializer extends SpecialRecipeSerializer<ImpacterRecipe> {
+    public ImpacterSerializer() {
+      super(ImpacterRecipe::new);
+    }
   }
 }

@@ -1,20 +1,16 @@
 package noobanidus.mods.compacted.recipes;
 
 import net.minecraft.inventory.CraftingInventory;
-import net.minecraft.item.*;
+import net.minecraft.item.IItemTier;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ToolItem;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.SpecialRecipe;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.NonNullList;
+import net.minecraft.item.crafting.SpecialRecipeSerializer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.util.Constants;
-import noobanidus.mods.compacted.Compacted;
-import noobanidus.mods.compacted.init.Registry;
+import noobanidus.mods.compacted.init.ModRecipes;
 import noobanidus.mods.compacted.items.EffectiveToolItem;
-import noobanidus.mods.compacted.materials.CompactedStoneMaterial;
-import noobanidus.mods.compacted.materials.DoubleCompactedStoneMaterial;
 
 public class RepairRecipe extends SpecialRecipe {
   public RepairRecipe(ResourceLocation idIn) {
@@ -39,7 +35,7 @@ public class RepairRecipe extends SpecialRecipe {
         }
 
         found = true;
-        tier = ((ToolItem)inSlot.getItem()).getTier();
+        tier = ((ToolItem) inSlot.getItem()).getTier();
         slot = i;
       }
     }
@@ -77,7 +73,7 @@ public class RepairRecipe extends SpecialRecipe {
       }
 
       if (inSlot.getItem() instanceof EffectiveToolItem) {
-        tier = ((ToolItem)inSlot.getItem()).getTier();
+        tier = ((ToolItem) inSlot.getItem()).getTier();
         tool = inSlot.copy();
         slot = i;
         break;
@@ -113,6 +109,12 @@ public class RepairRecipe extends SpecialRecipe {
 
   @Override
   public IRecipeSerializer<?> getSerializer() {
-    return Registry.REPAIR_RECIPE.get();
+    return ModRecipes.REPAIR_SERIALIZER.get();
+  }
+
+  public static class RepairSerializer extends SpecialRecipeSerializer<RepairRecipe> {
+    public RepairSerializer() {
+      super(RepairRecipe::new);
+    }
   }
 }

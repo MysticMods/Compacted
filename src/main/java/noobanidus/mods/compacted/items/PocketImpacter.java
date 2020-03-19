@@ -28,10 +28,14 @@ import net.minecraft.util.text.*;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.items.wrapper.InvWrapper;
-import noobanidus.mods.compacted.init.Registry;
+import noobanidus.mods.compacted.init.ModSounds;
+import noobanidus.mods.compacted.network.Networking;
+import noobanidus.mods.compacted.network.RightClickedEmpty;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -45,22 +49,7 @@ public class PocketImpacter extends Item {
 
   public PocketImpacter(Properties properties) {
     super(properties);
-  }
-
-  @Override
-  public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-    ItemStack item = playerIn.getHeldItem(handIn);
-    if (playerIn.isSneaking() && item.getItem() == this && !worldIn.isRemote()) {
-      CompoundNBT nbt = item.getOrCreateTag();
-      boolean cur = true;
-      if (nbt.contains("active", Constants.NBT.TAG_BYTE)) {
-        cur = nbt.getBoolean("active");
-      }
-      nbt.putBoolean("active", !cur);
-      worldIn.playSound(null, playerIn.getPosition(), Registry.DING.get(), SoundCategory.PLAYERS, 0.2f, 1);
-      return ActionResult.newResult(ActionResultType.SUCCESS, item);
-    }
-    return super.onItemRightClick(worldIn, playerIn, handIn);
+    MinecraftForge.EVENT_BUS.addListener(this::onRightClickEmpty);
   }
 
   @Override
@@ -200,27 +189,20 @@ public class PocketImpacter extends Item {
     }
   }
 
-  /* ---------------------- */
+  public void onRightClickEmpty(PlayerInteractEvent.RightClickEmpty event) {
+    final PlayerEntity player = event.getPlayer();
+    final ItemStack heldItem = player.getHeldItemMainhand();
+    if (heldItem.getItem() != this || !player.isSneaking()) {
+      return;
+    }
+    RightClickedEmpty packet = new RightClickedEmpty();
+    Networking.sendToServer(packet);
+  }
 
   @Override
   public ActionResultType onItemUse(ItemUseContext context) {
-    PlayerEntity player = context.getPlayer();
-    if (player != null && player.isSneaking()) {
-      if (!player.world.isRemote()) {
-        ItemStack stack = context.getItem();
-        CompoundNBT nbt = stack.getOrCreateTag();
-        boolean cur = true;
-        if (nbt.contains("active", Constants.NBT.TAG_BYTE)) {
-          cur = nbt.getBoolean("active");
-        }
-        nbt.putBoolean("active", !cur);
-        player.world.playSound(null, player.getPosition(), Registry.DING.get(), SoundCategory.PLAYERS, 0.2f, 1);
-      }
-      return ActionResultType.SUCCESS;
-    } else {
-      ActionResultType actionresulttype = this.tryPlace(new BlockItemUseContext(context));
-      return actionresulttype != ActionResultType.SUCCESS && this.isFood() ? this.onItemRightClick(context.getWorld(), Objects.requireNonNull(context.getPlayer()), context.getHand()).getType() : actionresulttype;
-    }
+    ActionResultType actionresulttype = this.tryPlace(new BlockItemUseContext(context));
+    return actionresulttype != ActionResultType.SUCCESS && this.isFood() ? this.onItemRightClick(context.getWorld(), Objects.requireNonNull(context.getPlayer()), context.getHand()).getType() : actionresulttype;
   }
 
   private ActionResultType tryPlace(@Nullable BlockItemUseContext context) {

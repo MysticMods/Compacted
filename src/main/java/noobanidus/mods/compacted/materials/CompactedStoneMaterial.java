@@ -4,7 +4,7 @@ import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemTier;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.IItemProvider;
-import noobanidus.mods.compacted.init.Registry;
+import noobanidus.mods.compacted.init.ModBlocks;
 
 public class CompactedStoneMaterial implements IItemTier {
   public static CompactedStoneMaterial MATERIAL = new CompactedStoneMaterial();
@@ -36,6 +36,6 @@ public class CompactedStoneMaterial implements IItemTier {
 
   @Override
   public Ingredient getRepairMaterial() {
-    return Ingredient.fromItems((IItemProvider) () -> Registry.COMPACTED_COBBLESTONE_ITEM.orElse(null));
+    return Ingredient.fromItems(ModBlocks.COMPACTED_COBBLESTONE.get());
   }
 }

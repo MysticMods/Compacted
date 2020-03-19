@@ -1,13 +1,15 @@
 package noobanidus.mods.compacted.events;
 
 import com.mojang.blaze3d.platform.GlStateManager;
-import net.minecraft.block.*;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.PlayerController;
-import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.ActiveRenderInfo;
+import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.DestroyBlockProgress;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.AtlasTexture;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -27,7 +29,6 @@ import noobanidus.mods.compacted.items.SizedToolItem;
 import noobanidus.mods.compacted.util.BreakUtil;
 import org.lwjgl.opengl.GL11;
 
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 

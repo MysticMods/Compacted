@@ -1,6 +1,0 @@
-{
-    "parent": "block/template_torch",
-    "textures": {
-        "torch": "compacted:block/compacted_stone_torch"
-    }
-}
