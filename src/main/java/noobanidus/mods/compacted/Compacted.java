@@ -1,5 +1,7 @@
 package noobanidus.mods.compacted;
 
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
@@ -64,5 +66,12 @@ public class Compacted {
   @OnlyIn(Dist.CLIENT)
   private void clientSetup(FMLClientSetupEvent event) {
     MinecraftForge.EVENT_BUS.register(ClientRenderEvents.class);
+
+    RenderTypeLookup.setRenderLayer(ModBlocks.COMPACTED_STONE_TORCH.get(), RenderType.getCutout());
+    RenderTypeLookup.setRenderLayer(ModBlocks.STONE_TORCH.get(), RenderType.getCutout());
+    RenderTypeLookup.setRenderLayer(ModBlocks.DOUBLE_COMPACTED_STONE_TORCH.get(), RenderType.getCutout());
+    RenderTypeLookup.setRenderLayer(ModBlocks.COMPACTED_STONE_WALL_TORCH.get(), RenderType.getCutout());
+    RenderTypeLookup.setRenderLayer(ModBlocks.STONE_WALL_TORCH.get(), RenderType.getCutout());
+    RenderTypeLookup.setRenderLayer(ModBlocks.DOUBLE_COMPACTED_STONE_WALL_TORCH.get(), RenderType.getCutout());
   }
 }

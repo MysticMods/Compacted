@@ -1,7 +1,6 @@
 package noobanidus.mods.compacted.events;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.mojang.blaze3d.vertex.MatrixApplyingVertexBuilder;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
@@ -58,7 +57,9 @@ public class ClientRenderEvents {
         return;
       }
 
+      IRenderTypeBuffer.Impl buffers = Minecraft.getInstance().getBufferBuilders().getEntityVertexConsumers();
       MatrixStack stack = event.getMatrixStack();
+      stack.push();
 
       BlockRayTraceResult trace = (BlockRayTraceResult) ray;
       Set<BlockPos> positions = BreakUtil.nearbyBlocks(tool, trace.getPos(), trace.getFace(), player.world, player);
@@ -73,7 +74,8 @@ public class ClientRenderEvents {
         mc.worldRenderer.drawBlockOutline(stack, ivertexBuilder, info.getRenderViewEntity(), d0, d1, d2, position, mc.world.getBlockState(position));
       }
 
-      mc.getBufferBuilders().getEntityVertexConsumers().draw(RenderType.getLines());
+      stack.pop();
+      buffers.draw();
 
       if (controller.getIsHittingBlock()) {
         drawBlockDamage(stack, player.world, info, positions, trace.getPos());
@@ -81,28 +83,8 @@ public class ClientRenderEvents {
     }
   }
 
-/*  private static void preRenderDamagedBlocks() {
-    GlStateManager.blendFuncSeparate(GlStateManager.SourceFactor.DST_COLOR, GlStateManager.DestFactor.SRC_COLOR, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-    GlStateManager.enableBlend();
-    GlStateManager.color4f(1.0F, 1.0F, 1.0F, 0.5F);
-    GlStateManager.polygonOffset(-1.0F, -10.0F);
-    GlStateManager.enablePolygonOffset();
-    GlStateManager.alphaFunc(516, 0.1F);
-    GlStateManager.enableAlphaTest();
-    GlStateManager.pushMatrix();
-  }
-
-  private static void postRenderDamagedBlocks() {
-    GlStateManager.disableAlphaTest();
-    GlStateManager.polygonOffset(0.0F, 0.0F);
-    GlStateManager.disablePolygonOffset();
-    GlStateManager.enableAlphaTest();
-    GlStateManager.depthMask(true);
-    GlStateManager.popMatrix();
-  }*/
-
   @SuppressWarnings("deprecation")
-  public static boolean drawBlockDamage(MatrixStack stack, World world, ActiveRenderInfo activeRenderInfo, Set<BlockPos> positions, BlockPos origin) {
+  private static boolean drawBlockDamage(MatrixStack stack, World world, ActiveRenderInfo activeRenderInfo, Set<BlockPos> positions, BlockPos origin) {
     DestroyBlockProgress progress = null;
 
     for (Int2ObjectMap.Entry<DestroyBlockProgress> entry : Minecraft.getInstance().worldRenderer.damagedBlocks.int2ObjectEntrySet()) {
@@ -124,6 +106,7 @@ public class ClientRenderEvents {
     double d2 = activeRenderInfo.getProjectedView().z;
 
     boolean drew = false;
+    stack.push();
 
     IRenderTypeBuffer.Impl vertices = buffers.getEffectVertexConsumers();
     RenderType type = ModelBakery.BLOCK_DESTRUCTION_RENDER_LAYERS.get(progress.getPartialBlockDamage());
@@ -145,8 +128,9 @@ public class ClientRenderEvents {
         }
       }
     }
+    stack.pop();
+    vertices.draw();
 
-    vertices.draw(type);
     return drew;
   }
 }
