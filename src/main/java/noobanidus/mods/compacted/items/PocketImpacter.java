@@ -160,7 +160,7 @@ public class PocketImpacter extends Item {
       return nbt.getBoolean("active");
     }
 
-    return false;
+    return true;
   }
 
 

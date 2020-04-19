@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "HEA",
+    " X ",
+    " X "
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:rods/stone"
+    },
+    "H": {
+      "item": "compacted:stone_hammer"
+    },
+    "E": {
+      "item": "compacted:stone_excavator"
+    },
+    "A": {
+      "item": "compacted:stone_heavy_axe"
+    }
+  },
+  "result": {
+    "item": "compacted:stone_paxel"
+  }
+}

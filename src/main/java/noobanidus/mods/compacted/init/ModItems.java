@@ -23,6 +23,7 @@ public class ModItems {
   private static Supplier<ToolItemProperties> STONE = () -> new ToolItemProperties().attackDamage(6).attackSpeed(-3.5f).tier(ItemTier.STONE).width(1).setGroup(Compacted.GROUP);
   private static Supplier<ToolItemProperties> COMPACTED = () -> new ToolItemProperties().attackDamage(8).attackSpeed(-3.5f).tier(CompactedStoneMaterial.MATERIAL).width(1).setGroup(Compacted.GROUP);
   private static Supplier<ToolItemProperties> DOUBLE = () -> new ToolItemProperties().attackDamage(10).attackSpeed(-3.5f).tier(DoubleCompactedStoneMaterial.MATERIAL).width(1).setGroup(Compacted.GROUP);
+
   public static final RegistryEntry<HammerItem> STONE_HAMMER = REGISTRATE.item("stone_hammer", (b) -> new HammerItem(STONE.get()))
       .recipe((ctx, p) -> {
         ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 1)
@@ -245,6 +246,84 @@ public class ModItems {
             .addIngredient(ModItems.COMPACTED_HEAVY_AXE.get())
             .addCriterion("has_compacted_heavy_axe", p.hasItem(ModItems.COMPACTED_HEAVY_AXE.get()))
             .build(p, "double_compacted_heavy_axe_from_compacted_heavy_axes");
+      })
+      .register();
+
+  public static final RegistryEntry<PaxelItem> STONE_PAXEL = REGISTRATE.item("stone_paxel", (b) -> new PaxelItem(STONE.get()))
+      .recipe((ctx, p) -> {
+        ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 1)
+            .patternLine("HEA")
+            .patternLine(" X ")
+            .patternLine(" X ")
+            .key('X', CompactedTags.Items.STONE_ROD)
+            .key('H', ModItems.STONE_HAMMER.get())
+            .key('E', ModItems.STONE_EXCAVATOR.get())
+            .key('A', ModItems.STONE_HEAVY_AXE.get())
+            .addCriterion("has_hammer", p.hasItem(ModItems.STONE_HAMMER.get()))
+            .addCriterion("has_excavator", p.hasItem(ModItems.STONE_HEAVY_AXE.get()))
+            .addCriterion("has_heavy_axe", p.hasItem(ModItems.STONE_EXCAVATOR.get()))
+            .addCriterion("has_rod", p.hasItem(CompactedTags.Items.STONE_ROD))
+            .build(p, "stone_paxel_from_items");
+      })
+      .register();
+
+  public static final RegistryEntry<PaxelItem> COMPACTED_PAXEL = REGISTRATE.item("compacted_paxel", (b) -> new PaxelItem(COMPACTED.get()))
+      .recipe((ctx, p) -> {
+        ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 1)
+            .patternLine("HEA")
+            .patternLine(" X ")
+            .patternLine(" X ")
+            .key('X', CompactedTags.Items.STONE_ROD)
+            .key('H', ModItems.COMPACTED_HAMMER.get())
+            .key('E', ModItems.COMPACTED_EXCAVATOR.get())
+            .key('A', ModItems.COMPACTED_HEAVY_AXE.get())
+            .addCriterion("has_hammer", p.hasItem(ModItems.COMPACTED_HAMMER.get()))
+            .addCriterion("has_excavator", p.hasItem(ModItems.COMPACTED_HEAVY_AXE.get()))
+            .addCriterion("has_heavy_axe", p.hasItem(ModItems.COMPACTED_EXCAVATOR.get()))
+            .addCriterion("has_rod", p.hasItem(CompactedTags.Items.COMPACTED_STONE_ROD))
+            .build(p, "compacted_stone_paxel_from_items");
+        ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry(), 1)
+            .addIngredient(ModItems.STONE_PAXEL.get())
+            .addIngredient(ModItems.STONE_PAXEL.get())
+            .addIngredient(ModItems.STONE_PAXEL.get())
+            .addIngredient(ModItems.STONE_PAXEL.get())
+            .addIngredient(ModItems.STONE_PAXEL.get())
+            .addIngredient(ModItems.STONE_PAXEL.get())
+            .addIngredient(ModItems.STONE_PAXEL.get())
+            .addIngredient(ModItems.STONE_PAXEL.get())
+            .addIngredient(ModItems.STONE_PAXEL.get())
+            .addCriterion("has_stone_paxel", p.hasItem(ModItems.STONE_PAXEL.get()))
+            .build(p, "compacted_paxel_from_paxels");
+      })
+      .register();
+
+  public static final RegistryEntry<PaxelItem> DOUBLE_DOUBLE_COMPACTED_PAXEL = REGISTRATE.item("double_compacted_paxel", (b) -> new PaxelItem(DOUBLE.get()))
+      .recipe((ctx, p) -> {
+        ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 1)
+            .patternLine("HEA")
+            .patternLine(" X ")
+            .patternLine(" X ")
+            .key('X', CompactedTags.Items.STONE_ROD)
+            .key('H', ModItems.DOUBLE_COMPACTED_HAMMER.get())
+            .key('E', ModItems.DOUBLE_COMPACTED_EXCAVATOR.get())
+            .key('A', ModItems.DOUBLE_COMPACTED_HEAVY_AXE.get())
+            .addCriterion("has_hammer", p.hasItem(ModItems.DOUBLE_COMPACTED_HAMMER.get()))
+            .addCriterion("has_excavator", p.hasItem(ModItems.DOUBLE_COMPACTED_HEAVY_AXE.get()))
+            .addCriterion("has_heavy_axe", p.hasItem(ModItems.DOUBLE_COMPACTED_EXCAVATOR.get()))
+            .addCriterion("has_rod", p.hasItem(CompactedTags.Items.DOUBLE_COMPACTED_STONE_ROD))
+            .build(p, "double_compacted_stone_paxel_from_items");
+        ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry(), 1)
+            .addIngredient(ModItems.COMPACTED_PAXEL.get())
+            .addIngredient(ModItems.COMPACTED_PAXEL.get())
+            .addIngredient(ModItems.COMPACTED_PAXEL.get())
+            .addIngredient(ModItems.COMPACTED_PAXEL.get())
+            .addIngredient(ModItems.COMPACTED_PAXEL.get())
+            .addIngredient(ModItems.COMPACTED_PAXEL.get())
+            .addIngredient(ModItems.COMPACTED_PAXEL.get())
+            .addIngredient(ModItems.COMPACTED_PAXEL.get())
+            .addIngredient(ModItems.COMPACTED_PAXEL.get())
+            .addCriterion("has_compacted_paxel", p.hasItem(ModItems.COMPACTED_PAXEL.get()))
+            .build(p, "double_compacted_paxel_from_compacted_paxels");
       })
       .register();
 
