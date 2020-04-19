@@ -13,10 +13,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import noobanidus.mods.compacted.events.ClientRenderEvents;
-import noobanidus.mods.compacted.init.ModBlocks;
-import noobanidus.mods.compacted.init.ModItems;
-import noobanidus.mods.compacted.init.ModRecipes;
-import noobanidus.mods.compacted.init.ModSounds;
+import noobanidus.mods.compacted.init.*;
 import noobanidus.mods.compacted.network.Networking;
 import noobanidus.mods.compacted.registrate.CustomRegistrate;
 import org.apache.logging.log4j.LogManager;
@@ -45,6 +42,7 @@ public class Compacted {
     ModItems.load();
     ModRecipes.load();
     ModSounds.load();
+    ModLang.load();
 
     IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 

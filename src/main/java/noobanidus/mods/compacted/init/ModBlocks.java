@@ -1,7 +1,6 @@
 package noobanidus.mods.compacted.init;
 
 import com.tterrag.registrate.providers.ProviderType;
-import com.tterrag.registrate.providers.RegistrateDataProvider;
 import com.tterrag.registrate.util.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import net.minecraft.block.Block;
@@ -23,20 +22,7 @@ import static noobanidus.mods.compacted.Compacted.REGISTRATE;
 
 public class ModBlocks {
   static {
-    Compacted.REGISTRATE.addDataGenerator(ProviderType.LANG, (ctx) -> {
-      {
-        ctx.add("tooltip.compacted.pocket_compacter.desc1", "Converts cobblestone in your inventory into various levels of compacted cobblestone.");
-        ctx.add("tooltip.compacted.pocket_compacter.desc2", "Functions more rapidly when enchanted with Efficiency.");
-        ctx.add("tooltip.compacted.pocket_impacter.desc1", "Contains %s cobblestone. %s");
-        ctx.add("tooltip.compacted.pocket_impacter.desc2", "Consumes cobblestone from your inventory. Can be crafted shapelessly to extract cobblestone.");
-        ctx.add("tooltip.compacted.pocket_impacter.desc3", "Can also be used to place cobblestone from its reserves, and will instantly break cobblestone.");
-        ctx.add("tooltip.compacted.impacter_active", "Active.");
-        ctx.add("tooltip.compacted.impacter_inactive", "Inactive.");
-        ctx.add("tooltip.compacted.hold_shift", "[Hold shift for more]");
-        ctx.add("tooltip.compacted.sneak_right_click", "Sneak-right-click empty air to toggle active/inactive.");
-        ctx.add("subtitles.compacted.item.toggled", "Pocket Impacter toggled");
-      }
-    });
+
   }
 
   public static final RegistryEntry<Block> COMPACTED_COBBLESTONE = REGISTRATE.block("compacted_cobblestone", Material.ROCK, Block::new)
@@ -173,7 +159,7 @@ public class ModBlocks {
       .setData(ProviderType.LANG, NonNullBiConsumer.noop())
       .register();
 
-  public static void load () {
+  public static void load() {
 
   }
 }

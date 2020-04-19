@@ -4,6 +4,7 @@ import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 
+// TODO: Not do this
 public class ToolItemProperties extends Item.Properties {
   private int width;
   private IItemTier tier;
