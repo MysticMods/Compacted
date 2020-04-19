@@ -7,7 +7,7 @@
   ],
   "key": {
     "X": {
-      "tag": "forge:rods/stone"
+      "tag": "forge:rods/stone/compacted/single"
     },
     "H": {
       "item": "compacted:compacted_hammer"
