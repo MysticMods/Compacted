@@ -46,6 +46,10 @@ public class PocketCompacter extends PocketItem {
       return;
     }
 
+    if (stack.getDamage() == stack.getMaxDamage() - 1) {
+      return;
+    }
+
     ServerPlayerEntity player = (ServerPlayerEntity) entityIn;
     PlayerInventory inventory = player.inventory;
     InvWrapper wrapped = new InvWrapper(inventory);
@@ -129,6 +133,9 @@ public class PocketCompacter extends PocketItem {
     super.addInformation(stack, worldIn, tooltip, flagIn);
 
     tooltip.add(new StringTextComponent(""));
+    if (stack.getDamage() == stack.getMaxDamage() - 1) {
+      tooltip.add(new TranslationTextComponent("tooltip.compacted.pocket_compacter.broken").setStyle(new Style().setColor(TextFormatting.DARK_RED).setBold(true)));
+    }
     tooltip.add(new TranslationTextComponent("tooltip.compacted.pocket_compacter.desc1", isActive(stack) ? new TranslationTextComponent("tooltip.compacted.impacter_active").setStyle(new Style().setColor(TextFormatting.AQUA)) : new TranslationTextComponent("tooltip.compacted.impacter_inactive").setStyle(new Style().setColor(TextFormatting.DARK_PURPLE))).setStyle(new Style().setColor(TextFormatting.DARK_GRAY)));
     tooltip.add(new StringTextComponent(""));
     tooltip.add(new TranslationTextComponent("tooltip.compacted.pocket_compacter.desc2").setStyle(new Style().setColor(TextFormatting.LIGHT_PURPLE)));
