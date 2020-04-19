@@ -4,7 +4,6 @@ import com.google.common.collect.Sets;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.block.PistonBlock;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
@@ -12,7 +11,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.Hand;
@@ -26,19 +24,21 @@ import noobanidus.mods.compacted.init.ModBlocks;
 
 import javax.annotation.Nullable;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
-public class PocketCompacter extends Item {
-  private static Set<Enchantment> ALLOWED_ENCHANTMENTS = Sets.newHashSet(Enchantments.EFFICIENCY, Enchantments.MENDING, Enchantments.UNBREAKING);
+public class PocketCompacter extends PocketItem {
 
   public PocketCompacter(Properties properties) {
     super(properties);
+    ALLOWED_ENCHANTMENTS = Sets.newHashSet(Enchantments.EFFICIENCY, Enchantments.MENDING, Enchantments.UNBREAKING);
   }
 
   @Override
   public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
     if (worldIn.isRemote()) {
+      return;
+    }
+
+    if (!isActive(stack)) {
       return;
     }
 
@@ -124,46 +124,12 @@ public class PocketCompacter extends Item {
   }
 
   @Override
-  public boolean isEnchantable(ItemStack stack) {
-    return true;
-  }
-
-  @Override
-  public int getItemEnchantability() {
-    return 10;
-  }
-
-  @Override
-  public boolean isBookEnchantable(ItemStack stack, ItemStack book) {
-    if (stack.getItem() != this) return false;
-
-    Map<Enchantment, Integer> map = EnchantmentHelper.getEnchantments(book);
-    for (Enchantment ench : map.keySet()) {
-      if (!ALLOWED_ENCHANTMENTS.contains(ench)) {
-        return false;
-      }
-    }
-
-    return true;
-  }
-
-  @Override
-  public int getItemEnchantability(ItemStack stack) {
-    return 10;
-  }
-
-  @Override
-  public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-    return stack.getItem() == this && ALLOWED_ENCHANTMENTS.contains(enchantment);
-  }
-
-  @Override
   @OnlyIn(Dist.CLIENT)
   public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
     super.addInformation(stack, worldIn, tooltip, flagIn);
 
     tooltip.add(new StringTextComponent(""));
-    tooltip.add(new TranslationTextComponent("tooltip.compacted.pocket_compacter.desc1").setStyle(new Style().setColor(TextFormatting.DARK_GRAY)));
+    tooltip.add(new TranslationTextComponent("tooltip.compacted.pocket_compacter.desc1", isActive(stack) ? new TranslationTextComponent("tooltip.compacted.impacter_active").setStyle(new Style().setColor(TextFormatting.AQUA)) : new TranslationTextComponent("tooltip.compacted.impacter_inactive").setStyle(new Style().setColor(TextFormatting.DARK_PURPLE))).setStyle(new Style().setColor(TextFormatting.DARK_GRAY)));
     tooltip.add(new StringTextComponent(""));
     tooltip.add(new TranslationTextComponent("tooltip.compacted.pocket_compacter.desc2").setStyle(new Style().setColor(TextFormatting.LIGHT_PURPLE)));
   }

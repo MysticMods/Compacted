@@ -10,6 +10,7 @@ import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.network.NetworkEvent;
 import noobanidus.mods.compacted.init.ModItems;
 import noobanidus.mods.compacted.init.ModSounds;
+import noobanidus.mods.compacted.items.PocketItem;
 
 import java.util.function.Supplier;
 
@@ -31,13 +32,8 @@ public class RightClickedEmpty {
     final ServerPlayerEntity player = context.get().getSender();
     if (player != null) {
       final ItemStack stack = player.getHeldItemMainhand();
-      if (stack.getItem() == ModItems.POCKET_IMPACTER.get()) {
-        CompoundNBT nbt = stack.getOrCreateTag();
-        boolean cur = true;
-        if (nbt.contains("active", Constants.NBT.TAG_BYTE)) {
-          cur = nbt.getBoolean("active");
-        }
-        nbt.putBoolean("active", !cur);
+      if (stack.getItem() instanceof PocketItem) {
+        PocketItem.toggleItem(stack);
         player.world.playSound(null, player.getPosition(), ModSounds.DING.get(), SoundCategory.PLAYERS, 0.2f, 1);
       }
     }

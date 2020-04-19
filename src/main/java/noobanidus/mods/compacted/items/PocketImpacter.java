@@ -8,7 +8,6 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
@@ -26,27 +25,20 @@ import net.minecraft.util.text.*;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.util.Constants;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.items.wrapper.InvWrapper;
-import noobanidus.mods.compacted.network.Networking;
-import noobanidus.mods.compacted.network.RightClickedEmpty;
 
 import javax.annotation.Nullable;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 
 @SuppressWarnings({"NullableProblems", "Duplicates"})
-public class PocketImpacter extends Item {
-  private static Set<Enchantment> ALLOWED_ENCHANTMENTS = Sets.newHashSet(Enchantments.EFFICIENCY);
+public class PocketImpacter extends PocketItem {
 
   public PocketImpacter(Properties properties) {
     super(properties);
-    MinecraftForge.EVENT_BUS.addListener(this::onRightClickEmpty);
+    ALLOWED_ENCHANTMENTS = Sets.newHashSet(Enchantments.EFFICIENCY);
   }
 
   @Override
@@ -55,12 +47,11 @@ public class PocketImpacter extends Item {
       return;
     }
 
-    CompoundNBT nbt = stack.getOrCreateTag();
-    if (nbt.contains("active", Constants.NBT.TAG_BYTE)) {
-      if (!nbt.getBoolean("active")) {
-        return;
-      }
+    if (!isActive(stack)) {
+      return;
     }
+
+    CompoundNBT nbt = stack.getOrCreateTag();
 
     PlayerEntity player = (PlayerEntity) entityIn;
 
@@ -91,30 +82,6 @@ public class PocketImpacter extends Item {
   }
 
   @Override
-  public boolean isEnchantable(ItemStack stack) {
-    return true;
-  }
-
-  @Override
-  public int getItemEnchantability() {
-    return 10;
-  }
-
-  @Override
-  public boolean isBookEnchantable(ItemStack stack, ItemStack book) {
-    if (stack.getItem() != this) return false;
-
-    Map<Enchantment, Integer> map = EnchantmentHelper.getEnchantments(book);
-    for (Enchantment ench : map.keySet()) {
-      if (!ALLOWED_ENCHANTMENTS.contains(ench)) {
-        return false;
-      }
-    }
-
-    return true;
-  }
-
-  @Override
   public float getDestroySpeed(ItemStack stack, BlockState state) {
     if (stack.getItem() == this && state.getBlock().isIn(Tags.Blocks.COBBLESTONE)) {
       return 1000f;
@@ -123,18 +90,8 @@ public class PocketImpacter extends Item {
   }
 
   @Override
-  public int getItemEnchantability(ItemStack stack) {
-    return 10;
-  }
-
-  @Override
   public boolean canHarvestBlock(BlockState blockIn) {
     return blockIn.getBlock().isIn(Tags.Blocks.COBBLESTONE);
-  }
-
-  @Override
-  public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-    return stack.getItem() == this && ALLOWED_ENCHANTMENTS.contains(enchantment);
   }
 
   public long countContained(ItemStack stack) {
@@ -149,20 +106,6 @@ public class PocketImpacter extends Item {
 
     return 0;
   }
-
-  private boolean isActive(ItemStack stack) {
-    if (stack.getItem() != this) {
-      return false;
-    }
-
-    CompoundNBT nbt = stack.getOrCreateTag();
-    if (nbt.contains("active", Constants.NBT.TAG_BYTE)) {
-      return nbt.getBoolean("active");
-    }
-
-    return true;
-  }
-
 
   @Override
   @OnlyIn(Dist.CLIENT)
@@ -184,16 +127,6 @@ public class PocketImpacter extends Item {
       tooltip.add(new StringTextComponent(""));
       tooltip.add(new TranslationTextComponent("tooltip.compacted.hold_shift").setStyle(new Style().setColor(TextFormatting.DARK_GRAY)));
     }
-  }
-
-  public void onRightClickEmpty(PlayerInteractEvent.RightClickEmpty event) {
-    final PlayerEntity player = event.getPlayer();
-    final ItemStack heldItem = player.getHeldItemMainhand();
-    if (heldItem.getItem() != this || !player.isSneaking()) {
-      return;
-    }
-    RightClickedEmpty packet = new RightClickedEmpty();
-    Networking.sendToServer(packet);
   }
 
   @Override
@@ -272,9 +205,9 @@ public class PocketImpacter extends Item {
     return property.parseValue(value).map((p) -> state.with(property, p)).orElse(state);
   }
 
-  private boolean canPlace(BlockItemUseContext selection, BlockState state) {
-    PlayerEntity playerentity = selection.getPlayer();
+  private boolean canPlace(BlockItemUseContext context, BlockState state) {
+    PlayerEntity playerentity = context.getPlayer();
     ISelectionContext iselectioncontext = playerentity == null ? ISelectionContext.dummy() : ISelectionContext.forEntity(playerentity);
-    return (state.isValidPosition(selection.getWorld(), selection.getPos())) && selection.getWorld().canPlace(state, selection.getPos(), iselectioncontext);
+    return (state.isValidPosition(context.getWorld(), context.getPos())) && context.getWorld().func_217350_a(state, context.getPos(), iselectioncontext);
   }
 }
