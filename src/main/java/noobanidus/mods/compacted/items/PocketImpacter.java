@@ -208,6 +208,6 @@ public class PocketImpacter extends PocketItem {
   private boolean canPlace(BlockItemUseContext context, BlockState state) {
     PlayerEntity playerentity = context.getPlayer();
     ISelectionContext iselectioncontext = playerentity == null ? ISelectionContext.dummy() : ISelectionContext.forEntity(playerentity);
-    return (state.isValidPosition(context.getWorld(), context.getPos())) && context.getWorld().func_217350_a(state, context.getPos(), iselectioncontext);
+    return (state.isValidPosition(context.getWorld(), context.getPos())) && context.getWorld().canPlace(state, context.getPos(), iselectioncontext);
   }
 }
