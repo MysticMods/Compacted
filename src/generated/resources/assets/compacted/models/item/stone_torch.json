@@ -1,6 +1,6 @@
 {
-  "parent": "block/template_torch",
+  "parent": "item/generated",
   "textures": {
-    "torch": "compacted:block/stone_torch"
+    "layer0": "compacted:block/stone_torch"
   }
 }
