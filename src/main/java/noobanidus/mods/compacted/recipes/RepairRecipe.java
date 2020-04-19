@@ -11,6 +11,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import noobanidus.mods.compacted.init.ModRecipes;
 import noobanidus.mods.compacted.items.EffectiveToolItem;
+import noobanidus.mods.compacted.items.PaxelItem;
 
 public class RepairRecipe extends SpecialRecipe {
   public RepairRecipe(ResourceLocation idIn) {
@@ -29,7 +30,7 @@ public class RepairRecipe extends SpecialRecipe {
         continue;
       }
 
-      if (inSlot.getItem() instanceof EffectiveToolItem) {
+      if (inSlot.getItem() instanceof EffectiveToolItem || inSlot.getItem() instanceof PaxelItem) {
         if (found) {
           return false;
         }
@@ -72,7 +73,7 @@ public class RepairRecipe extends SpecialRecipe {
         continue;
       }
 
-      if (inSlot.getItem() instanceof EffectiveToolItem) {
+      if (inSlot.getItem() instanceof EffectiveToolItem || inSlot.getItem() instanceof PaxelItem) {
         tier = ((ToolItem) inSlot.getItem()).getTier();
         tool = inSlot.copy();
         slot = i;

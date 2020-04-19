@@ -5,7 +5,8 @@ import static noobanidus.mods.compacted.Compacted.REGISTRATE;
 public class ModLang {
   static {
     REGISTRATE.addRawLang("tooltip.compacted.pocket_compacter.desc1", "Compacts cobblestone in your inventory. %s");
-    REGISTRATE.addRawLang("tooltip.compacted.pocket_compacter.desc2", "Functions more rapidly when enchanted with Efficiency.");
+    REGISTRATE.addRawLang("tooltip.compacted.pocket_compacter.desc2", "Functions more rapidly when enchanted with Efficiency. Repair with pistons.");
+    REGISTRATE.addRawLang("tooltip.compacted.pocket_compacter.broken", "Currently broken.");
     REGISTRATE.addRawLang("tooltip.compacted.pocket_impacter.desc1", "Contains %s cobblestone. %s");
     REGISTRATE.addRawLang("tooltip.compacted.pocket_impacter.desc2", "Consumes cobblestone from your inventory. Can be crafted shapelessly to extract cobblestone.");
     REGISTRATE.addRawLang("tooltip.compacted.pocket_impacter.desc3", "Can also be used to place cobblestone from its reserves, and will instantly break cobblestone.");
