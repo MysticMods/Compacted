@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:compacted_paxel_from_paxels"
+    ]
+  },
+  "criteria": {
+    "has_stone_paxel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "compacted:stone_paxel"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:compacted_paxel_from_paxels"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_stone_paxel",
+      "has_the_recipe"
+    ]
+  ]
+}
