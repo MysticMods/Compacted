@@ -4,13 +4,18 @@ import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.util.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
+import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.item.WallOrFloorItem;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.Tag;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
 import noobanidus.mods.compacted.Compacted;
@@ -18,12 +23,14 @@ import noobanidus.mods.compacted.CompactedTags;
 import noobanidus.mods.compacted.blocks.StoneTorchBlock;
 import noobanidus.mods.compacted.blocks.WallStoneTorchBlock;
 
+import javax.annotation.Nullable;
+import java.util.HashMap;
+import java.util.Map;
+
 import static noobanidus.mods.compacted.Compacted.REGISTRATE;
 
 public class ModBlocks {
-  static {
 
-  }
 
   public static final RegistryEntry<Block> COMPACTED_COBBLESTONE = REGISTRATE.block("compacted_cobblestone", Material.ROCK, Block::new)
       .properties(o -> o.hardnessAndResistance(3.0f, 8.0f))
