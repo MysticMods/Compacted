@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "compacted:block/double_compacted_end_stone"
+  }
+}

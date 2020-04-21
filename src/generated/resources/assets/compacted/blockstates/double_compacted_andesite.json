@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "compacted:block/double_compacted_andesite"
+    }
+  }
+}
