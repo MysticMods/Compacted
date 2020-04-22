@@ -189,24 +189,26 @@ public class ModAdditionalBlocks {
   public static final RegistryEntry<Block> COMPACTED_STONE = REGISTRATE.block("compacted_stone", Material.ROCK, Block::new)
       .properties(o -> o.hardnessAndResistance(1.6f, 6.0f))
       .item()
+      .tag(CompactedTags.Items.COMPACTED_STONE)
       .build()
       .register();
 
   public static final RegistryEntry<Block> DOUBLE_COMPACTED_STONE = REGISTRATE.block("double_compacted_stone", Material.ROCK, Block::new)
       .properties(o -> o.hardnessAndResistance(1.6f, 6.0f))
       .item()
+      .tag(CompactedTags.Items.DOUBLE_COMPACTED_STONE)
       .build()
       .register();
 
 
   public static final RegistryEntry<SoulSandBlock> COMPACTED_SOUL_SAND = REGISTRATE.block("compacted_soul_sand", Material.SAND, SoulSandBlock::new)
-      .properties(o -> o.hardnessAndResistance(0.5f, 0.5f).sound(SoundType.SAND).velocityMultiplier(0.2f))
+      .properties(o -> o.hardnessAndResistance(0.5f, 0.5f).sound(SoundType.SAND))
       .item()
       .build()
       .register();
 
   public static final RegistryEntry<SoulSandBlock> DOUBLE_COMPACTED_SOUL_SAND = REGISTRATE.block("double_compacted_soul_sand", Material.SAND, SoulSandBlock::new)
-      .properties(o -> o.hardnessAndResistance(0.5f, 0.5f).sound(SoundType.SAND).velocityMultiplier(0.1f))
+      .properties(o -> o.hardnessAndResistance(0.5f, 0.5f).sound(SoundType.SAND))
       .item()
       .build()
       .register();
