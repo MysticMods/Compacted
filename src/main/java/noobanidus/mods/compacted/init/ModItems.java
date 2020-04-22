@@ -31,19 +31,10 @@ public class ModItems {
             .patternLine("#X#")
             .patternLine(" X ")
             .key('X', CompactedTags.Items.STONE_ROD)
-            .key('#', Tags.Items.COBBLESTONE)
-            .addCriterion("has_cobblestone", p.hasItem(Tags.Items.COBBLESTONE))
+            .key('#', CompactedTags.Items.TIER1)
+            .addCriterion("has_stone", p.hasItem(CompactedTags.Items.TIER1))
             .addCriterion("has_rod", p.hasItem(CompactedTags.Items.STONE_ROD))
             .build(p, "stone_hammer_from_cobblestone");
-        ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 1)
-            .patternLine("###")
-            .patternLine("#X#")
-            .patternLine(" X ")
-            .key('X', CompactedTags.Items.STONE_ROD)
-            .key('#', Tags.Items.STONE)
-            .addCriterion("has_cobblestone", p.hasItem(Tags.Items.STONE))
-            .addCriterion("has_rod", p.hasItem(CompactedTags.Items.STONE_ROD))
-            .build(p, "stone_hammer_from_stone");
       })
       .register();
 
@@ -54,8 +45,8 @@ public class ModItems {
             .patternLine("#X#")
             .patternLine(" X ")
             .key('X', CompactedTags.Items.COMPACTED_STONE_ROD)
-            .key('#', CompactedTags.Items.COMPACTED_COBBLESTONE)
-            .addCriterion("has_cobblestone", p.hasItem(CompactedTags.Items.COMPACTED_COBBLESTONE))
+            .key('#', CompactedTags.Items.TIER2)
+            .addCriterion("has_cobblestone", p.hasItem(CompactedTags.Items.TIER2))
             .addCriterion("has_rod", p.hasItem(CompactedTags.Items.COMPACTED_STONE_ROD))
             .build(p);
         ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry(), 1)
@@ -80,8 +71,8 @@ public class ModItems {
             .patternLine("#X#")
             .patternLine(" X ")
             .key('X', CompactedTags.Items.DOUBLE_COMPACTED_STONE_ROD)
-            .key('#', CompactedTags.Items.DOUBLE_COMPACTED_COBBLESTONE)
-            .addCriterion("has_cobblestone", p.hasItem(CompactedTags.Items.DOUBLE_COMPACTED_COBBLESTONE))
+            .key('#', CompactedTags.Items.TIER3)
+            .addCriterion("has_cobblestone", p.hasItem(CompactedTags.Items.TIER3))
             .addCriterion("has_rod", p.hasItem(CompactedTags.Items.DOUBLE_COMPACTED_STONE_ROD))
             .build(p);
         ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry(), 1)
@@ -106,19 +97,10 @@ public class ModItems {
             .patternLine("#X#")
             .patternLine(" X ")
             .key('X', CompactedTags.Items.STONE_ROD)
-            .key('#', Tags.Items.COBBLESTONE)
-            .addCriterion("has_cobblestone", p.hasItem(Tags.Items.COBBLESTONE))
+            .key('#', CompactedTags.Items.TIER1)
+            .addCriterion("has_cobblestone", p.hasItem(CompactedTags.Items.TIER1))
             .addCriterion("has_rod", p.hasItem(CompactedTags.Items.STONE_ROD))
             .build(p, "stone_excavator_from_cobblestone");
-        ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 1)
-            .patternLine(" # ")
-            .patternLine("#X#")
-            .patternLine(" X ")
-            .key('X', CompactedTags.Items.STONE_ROD)
-            .key('#', Tags.Items.STONE)
-            .addCriterion("has_cobblestone", p.hasItem(Tags.Items.STONE))
-            .addCriterion("has_rod", p.hasItem(CompactedTags.Items.STONE_ROD))
-            .build(p, "stone_excavator_from_stone");
       })
       .register();
 
@@ -129,8 +111,8 @@ public class ModItems {
             .patternLine("#X#")
             .patternLine(" X ")
             .key('X', CompactedTags.Items.COMPACTED_STONE_ROD)
-            .key('#', CompactedTags.Items.COMPACTED_COBBLESTONE)
-            .addCriterion("has_cobblestone", p.hasItem(CompactedTags.Items.COMPACTED_COBBLESTONE))
+            .key('#', CompactedTags.Items.TIER2)
+            .addCriterion("has_cobblestone", p.hasItem(CompactedTags.Items.TIER2))
             .addCriterion("has_rod", p.hasItem(CompactedTags.Items.COMPACTED_STONE_ROD))
             .build(p);
         ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry(), 1)
@@ -155,8 +137,8 @@ public class ModItems {
             .patternLine("#X#")
             .patternLine(" X ")
             .key('X', CompactedTags.Items.DOUBLE_COMPACTED_STONE_ROD)
-            .key('#', CompactedTags.Items.DOUBLE_COMPACTED_COBBLESTONE)
-            .addCriterion("has_cobblestone", p.hasItem(CompactedTags.Items.DOUBLE_COMPACTED_COBBLESTONE))
+            .key('#', CompactedTags.Items.TIER3)
+            .addCriterion("has_cobblestone", p.hasItem(CompactedTags.Items.TIER3))
             .addCriterion("has_rod", p.hasItem(CompactedTags.Items.DOUBLE_COMPACTED_STONE_ROD))
             .build(p);
         ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry(), 1)
@@ -181,19 +163,10 @@ public class ModItems {
             .patternLine("#X")
             .patternLine(" X")
             .key('X', CompactedTags.Items.STONE_ROD)
-            .key('#', Tags.Items.COBBLESTONE)
-            .addCriterion("has_cobblestone", p.hasItem(Tags.Items.COBBLESTONE))
+            .key('#', CompactedTags.Items.TIER1)
+            .addCriterion("has_cobblestone", p.hasItem(CompactedTags.Items.TIER1))
             .addCriterion("has_rod", p.hasItem(CompactedTags.Items.STONE_ROD))
             .build(p, "stone_heavy_axe_from_cobblestone");
-        ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 1)
-            .patternLine("##")
-            .patternLine("#X")
-            .patternLine(" X")
-            .key('X', CompactedTags.Items.STONE_ROD)
-            .key('#', Tags.Items.STONE)
-            .addCriterion("has_cobblestone", p.hasItem(Tags.Items.STONE))
-            .addCriterion("has_rod", p.hasItem(CompactedTags.Items.STONE_ROD))
-            .build(p, "stone_heavy_axe_from_stone");
       })
       .register();
 
@@ -204,8 +177,8 @@ public class ModItems {
             .patternLine("#X")
             .patternLine(" X")
             .key('X', CompactedTags.Items.COMPACTED_STONE_ROD)
-            .key('#', CompactedTags.Items.COMPACTED_COBBLESTONE)
-            .addCriterion("has_cobblestone", p.hasItem(CompactedTags.Items.COMPACTED_COBBLESTONE))
+            .key('#', CompactedTags.Items.TIER2)
+            .addCriterion("has_cobblestone", p.hasItem(CompactedTags.Items.TIER2))
             .addCriterion("has_rod", p.hasItem(CompactedTags.Items.COMPACTED_STONE_ROD))
             .build(p);
         ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry(), 1)
@@ -230,8 +203,8 @@ public class ModItems {
             .patternLine("#X")
             .patternLine(" X")
             .key('X', CompactedTags.Items.DOUBLE_COMPACTED_STONE_ROD)
-            .key('#', CompactedTags.Items.DOUBLE_COMPACTED_COBBLESTONE)
-            .addCriterion("has_cobblestone", p.hasItem(CompactedTags.Items.DOUBLE_COMPACTED_COBBLESTONE))
+            .key('#', CompactedTags.Items.TIER3)
+            .addCriterion("has_cobblestone", p.hasItem(CompactedTags.Items.TIER3))
             .addCriterion("has_rod", p.hasItem(CompactedTags.Items.DOUBLE_COMPACTED_STONE_ROD))
             .build(p);
         ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry(), 1)
@@ -332,15 +305,9 @@ public class ModItems {
         ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 1)
             .patternLine("X")
             .patternLine("X")
-            .key('X', Tags.Items.COBBLESTONE)
-            .addCriterion("has_cobblestone", p.hasItem(Tags.Items.COBBLESTONE))
+            .key('X', CompactedTags.Items.TIER1)
+            .addCriterion("has_cobblestone", p.hasItem(CompactedTags.Items.TIER1))
             .build(p, "stone_rod_from_cobblestone");
-        ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 1)
-            .patternLine("X")
-            .patternLine("X")
-            .key('X', Tags.Items.STONE)
-            .addCriterion("has_cobblestone", p.hasItem(Tags.Items.STONE))
-            .build(p, "stone_rod_from_stone");
         ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry(), 9)
             .addIngredient(CompactedTags.Items.COMPACTED_STONE_ROD)
             .addCriterion("has_compacted_rod", p.hasItem(CompactedTags.Items.COMPACTED_STONE_ROD))
@@ -354,8 +321,8 @@ public class ModItems {
         ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 1)
             .patternLine("X")
             .patternLine("X")
-            .key('X', CompactedTags.Items.COMPACTED_COBBLESTONE)
-            .addCriterion("has_compcated_cobblestone", p.hasItem(CompactedTags.Items.COMPACTED_COBBLESTONE))
+            .key('X', CompactedTags.Items.TIER2)
+            .addCriterion("has_compcated_cobblestone", p.hasItem(CompactedTags.Items.TIER2))
             .build(p, "compacted_stone_rod_from_compacted_cobblestone");
         ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry(), 1)
             .addIngredient(CompactedTags.Items.STONE_ROD)
@@ -382,8 +349,8 @@ public class ModItems {
         ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 1)
             .patternLine("X")
             .patternLine("X")
-            .key('X', CompactedTags.Items.DOUBLE_COMPACTED_COBBLESTONE)
-            .addCriterion("has_double_compcated_cobblestone", p.hasItem(CompactedTags.Items.DOUBLE_COMPACTED_COBBLESTONE))
+            .key('X', CompactedTags.Items.TIER3)
+            .addCriterion("has_double_compcated_cobblestone", p.hasItem(CompactedTags.Items.TIER3))
             .build(p, "double_compacted_stone_rod_from_double_compacted_cobblestone");
         ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry(), 1)
             .addIngredient(CompactedTags.Items.COMPACTED_STONE_ROD)
@@ -401,7 +368,7 @@ public class ModItems {
       .tag(CompactedTags.Items.DOUBLE_COMPACTED_STONE_ROD)
       .register();
 
-  public static final RegistryEntry<PocketCompacter> POCKET_COMPACTER = REGISTRATE.item("pocket_compacter", PocketCompacter::new)
+  public static final RegistryEntry<CobblestoneCompacter> COBBLESTONE_COMPACTER = REGISTRATE.item("cobblestone_compacter", CobblestoneCompacter::new)
       .properties(o -> o.rarity(Rarity.UNCOMMON).maxDamage(620))
       .model(NonNullBiConsumer.noop())
       .recipe((ctx, p) ->
@@ -418,7 +385,7 @@ public class ModItems {
               .build(p))
       .register();
 
-  public static final RegistryEntry<PocketImpacter> POCKET_IMPACTER = REGISTRATE.item("pocket_impacter", PocketImpacter::new)
+  public static final RegistryEntry<CobblestoneImpacter> COBBLESTONE_IMPACTER = REGISTRATE.item("cobblestone_impacter", CobblestoneImpacter::new)
       .properties(o -> o.rarity(Rarity.EPIC))
       .model(NonNullBiConsumer.noop())
       .recipe((ctx, p) ->
