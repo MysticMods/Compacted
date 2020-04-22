@@ -5,52 +5,37 @@ import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.tags.ItemTags;
 import net.minecraftforge.common.Tags;
+import noobanidus.mods.compacted.CompactedTags;
 import noobanidus.mods.compacted.blocks.VariableRedstoneBlock;
 
 import static noobanidus.mods.compacted.Compacted.REGISTRATE;
 
 public class ModAdditionalBlocks {
-
-/*  static {
-    compacter(Blocks.ANDESITE, null
-    compacter(Blocks.DIORITE, null
-    compacter(Blocks.DIRT, null
-    compacter(Blocks.END_STONE, Tags.Items.END_STONES
-    compacter(Blocks.GRANITE, null
-    compacter(Blocks.GRAVEL, Tags.Items.GRAVEL
-    compacter(Blocks.NETHERRACK, Tags.Items.NETHERRACK
-    compacter(Blocks.PRISMARINE, null
-    compacter(Blocks.RED_SAND, Tags.Items.SAND_RED
-    compacter(Blocks.REDSTONE_BLOCK, Tags.Items.STORAGE_BLOCKS_REDSTONE
-    compacter(Blocks.SAND, Tags.Items.SAND_COLORLESS
-    compacter(Blocks.SMOOTH_STONE, null
-    compacter(Blocks.TERRACOTTA, null
-    compacted(Blocks.STONE, Tags.Items.STONE
-    compacted(Blocks.SOUL_SAND, null
-  }*/
-
-
   public static final RegistryEntry<Block> COMPACTED_ANDESITE = REGISTRATE.block("compacted_andesite", Material.ROCK, Block::new)
       .properties(o -> o.hardnessAndResistance(1.6f, 6.0f))
       .item()
+      .tag(CompactedTags.Items.COMPACTED_STONE)
       .build()
       .register();
 
   public static final RegistryEntry<Block> DOUBLE_COMPACTED_ANDESITE = REGISTRATE.block("double_compacted_andesite", Material.ROCK, Block::new)
       .properties(o -> o.hardnessAndResistance(1.6f, 6.0f))
       .item()
+      .tag(CompactedTags.Items.DOUBLE_COMPACTED_STONE)
       .build()
       .register();
 
   public static final RegistryEntry<Block> COMPACTED_DIORITE = REGISTRATE.block("compacted_diorite", Material.ROCK, Block::new)
       .properties(o -> o.hardnessAndResistance(1.6f, 6.0f))
       .item()
+      .tag(CompactedTags.Items.COMPACTED_STONE)
       .build()
       .register();
 
   public static final RegistryEntry<Block> DOUBLE_COMPACTED_DIORITE = REGISTRATE.block("double_compacted_diorite", Material.ROCK, Block::new)
       .properties(o -> o.hardnessAndResistance(1.6f, 6.0f))
       .item()
+      .tag(CompactedTags.Items.DOUBLE_COMPACTED_STONE)
       .build()
       .register();
 
@@ -81,12 +66,14 @@ public class ModAdditionalBlocks {
   public static final RegistryEntry<Block> COMPACTED_GRANITE = REGISTRATE.block("compacted_granite", Material.ROCK, Block::new)
       .properties(o -> o.hardnessAndResistance(1.6f, 6.0f))
       .item()
+      .tag(CompactedTags.Items.COMPACTED_STONE)
       .build()
       .register();
 
   public static final RegistryEntry<Block> DOUBLE_COMPACTED_GRANITE = REGISTRATE.block("double_compacted_granite", Material.ROCK, Block::new)
       .properties(o -> o.hardnessAndResistance(1.6f, 6.0f))
       .item()
+      .tag(CompactedTags.Items.DOUBLE_COMPACTED_STONE)
       .build()
       .register();
 
@@ -165,12 +152,14 @@ public class ModAdditionalBlocks {
   public static final RegistryEntry<Block> COMPACTED_SMOOTH_STONE = REGISTRATE.block("compacted_smooth_stone", Material.ROCK, Block::new)
       .properties(o -> o.hardnessAndResistance(1.6f, 6.0f))
       .item()
+      .tag(CompactedTags.Items.COMPACTED_STONE)
       .build()
       .register();
 
   public static final RegistryEntry<Block> DOUBLE_COMPACTED_SMOOTH_STONE = REGISTRATE.block("double_compacted_smooth_stone", Material.ROCK, Block::new)
       .properties(o -> o.hardnessAndResistance(1.6f, 6.0f))
       .item()
+      .tag(CompactedTags.Items.DOUBLE_COMPACTED_STONE)
       .build()
       .register();
 
