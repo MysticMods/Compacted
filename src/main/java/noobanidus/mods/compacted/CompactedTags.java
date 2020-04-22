@@ -11,6 +11,19 @@ import java.util.function.Function;
 
 public class CompactedTags {
   public static class Items {
+    public static Tag<Item> TIER1 = itemTag("compacted", "tier_1_repair");
+    public static Tag<Item> TIER2 = itemTag("compacted", "tier_2_repair");
+    public static Tag<Item> TIER3 = itemTag("compacted", "tier_3_repair");
+    public static Tag<Item> ANDESITE = itemTag("forge", "andesite");
+    public static Tag<Item> DIORITE = itemTag("forge", "diorite");
+    public static Tag<Item> DIRT = itemTag("forge", "dirt");
+    public static Tag<Item> GRANITE = itemTag("forge", "granite");
+    public static Tag<Item> PRISMARINE = itemTag("forge", "prismarine");
+    public static Tag<Item> SMOOTH_STONE = itemTag("forge", "smooth_stone");
+    public static Tag<Item> TERRACOTTA = itemTag("forge", "terracotta");
+    public static Tag<Item> STONE_PLAIN = itemTag("forge", "stone_plain");
+    public static Tag<Item> SOUL_SAND = itemTag("forge", "soul_sand");
+
     public static Tag<Item> COMPACTED_STONE = itemTag("forge", "compacted/stone/single");
     public static Tag<Item> DOUBLE_COMPACTED_STONE = itemTag("forge", "compacted/stone/double");
 
