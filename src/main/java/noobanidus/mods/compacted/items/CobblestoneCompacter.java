@@ -25,9 +25,9 @@ import noobanidus.mods.compacted.init.ModBlocks;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class PocketCompacter extends PocketItem {
+public class CobblestoneCompacter extends PocketItem {
 
-  public PocketCompacter(Properties properties) {
+  public CobblestoneCompacter(Properties properties) {
     super(properties);
     ALLOWED_ENCHANTMENTS = Sets.newHashSet(Enchantments.EFFICIENCY, Enchantments.MENDING, Enchantments.UNBREAKING);
   }

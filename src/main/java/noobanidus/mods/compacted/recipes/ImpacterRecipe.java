@@ -35,7 +35,7 @@ public class ImpacterRecipe extends SpecialRecipe {
         continue;
       }
 
-      if (inSlot.getItem() == ModItems.POCKET_IMPACTER.get()) {
+      if (inSlot.getItem() == ModItems.COBBLESTONE_IMPACTER.get()) {
         if (found) {
           return false;
         }
@@ -50,7 +50,7 @@ public class ImpacterRecipe extends SpecialRecipe {
   public ItemStack getCraftingResult(CraftingInventory inv) {
     ItemStack impacter = ItemStack.EMPTY;
     for (int i = 0; i < inv.getSizeInventory(); i++) {
-      if (inv.getStackInSlot(i).getItem() == ModItems.POCKET_IMPACTER.get()) {
+      if (inv.getStackInSlot(i).getItem() == ModItems.COBBLESTONE_IMPACTER.get()) {
         impacter = inv.getStackInSlot(i);
         break;
       }
@@ -80,7 +80,7 @@ public class ImpacterRecipe extends SpecialRecipe {
   public NonNullList<ItemStack> getRemainingItems(CraftingInventory inv) {
     NonNullList<ItemStack> result = NonNullList.withSize(inv.getSizeInventory(), ItemStack.EMPTY);
     for (int i = 0; i < inv.getSizeInventory(); i++) {
-      if (inv.getStackInSlot(i).getItem() == ModItems.POCKET_IMPACTER.get()) {
+      if (inv.getStackInSlot(i).getItem() == ModItems.COBBLESTONE_IMPACTER.get()) {
         result.set(i, inv.getStackInSlot(i));
         inv.setInventorySlotContents(i, ItemStack.EMPTY);
       }

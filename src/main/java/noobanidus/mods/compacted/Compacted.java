@@ -18,6 +18,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import noobanidus.mods.compacted.events.ClientRenderEvents;
+import noobanidus.mods.compacted.events.Mappings;
 import noobanidus.mods.compacted.init.*;
 import noobanidus.mods.compacted.network.Networking;
 import noobanidus.mods.compacted.registrate.CustomRegistrate;
@@ -62,6 +63,7 @@ public class Compacted {
     });
 
     MinecraftForge.EVENT_BUS.register(this);
+    MinecraftForge.EVENT_BUS.addListener(Mappings::onItemMappings);
   }
 
   private void modSetup(FMLCommonSetupEvent event) {

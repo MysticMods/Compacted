@@ -34,9 +34,9 @@ import java.util.List;
 import java.util.Objects;
 
 @SuppressWarnings({"NullableProblems", "Duplicates"})
-public class PocketImpacter extends PocketItem {
+public class CobblestoneImpacter extends PocketItem {
 
-  public PocketImpacter(Properties properties) {
+  public CobblestoneImpacter(Properties properties) {
     super(properties);
     ALLOWED_ENCHANTMENTS = Sets.newHashSet(Enchantments.EFFICIENCY);
   }
@@ -122,7 +122,7 @@ public class PocketImpacter extends PocketItem {
       tooltip.add(new StringTextComponent(""));
       tooltip.add(new TranslationTextComponent("tooltip.compacted.pocket_impacter.desc3").setStyle(new Style().setColor(TextFormatting.DARK_GRAY)));
       tooltip.add(new StringTextComponent(""));
-      tooltip.add(new TranslationTextComponent("tooltip.compacted.pocket_compacter.desc2").setStyle(new Style().setColor(TextFormatting.LIGHT_PURPLE)));
+      tooltip.add(new TranslationTextComponent("tooltip.compacted.pocket_impacter.desc4").setStyle(new Style().setColor(TextFormatting.LIGHT_PURPLE)));
     } else {
       tooltip.add(new StringTextComponent(""));
       tooltip.add(new TranslationTextComponent("tooltip.compacted.hold_shift").setStyle(new Style().setColor(TextFormatting.DARK_GRAY)));
