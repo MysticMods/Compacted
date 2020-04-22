@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "compacted:compacted_red_sand"
+    },
+    {
+      "item": "compacted:compacted_red_sand"
+    },
+    {
+      "item": "compacted:compacted_red_sand"
+    },
+    {
+      "item": "compacted:compacted_red_sand"
+    },
+    {
+      "item": "compacted:compacted_red_sand"
+    },
+    {
+      "item": "compacted:compacted_red_sand"
+    },
+    {
+      "item": "compacted:compacted_red_sand"
+    },
+    {
+      "item": "compacted:compacted_red_sand"
+    },
+    {
+      "item": "compacted:compacted_red_sand"
+    }
+  ],
+  "result": {
+    "item": "compacted:double_compacted_red_sand"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:compacted/stone/single",
+    "#forge:compacted/cobblestone/single"
+  ]
+}

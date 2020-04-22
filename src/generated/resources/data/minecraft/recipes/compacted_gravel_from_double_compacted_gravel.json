@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "compacted:double_compacted_gravel"
+    }
+  ],
+  "result": {
+    "item": "compacted:compacted_gravel",
+    "count": 9
+  }
+}

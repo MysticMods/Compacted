@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:compacted_terracotta_from_double_compacted_terracotta"
+    ]
+  },
+  "criteria": {
+    "has_double_compacted_terracotta": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "compacted:double_compacted_terracotta"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:compacted_terracotta_from_double_compacted_terracotta"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_double_compacted_terracotta",
+      "has_the_recipe"
+    ]
+  ]
+}
