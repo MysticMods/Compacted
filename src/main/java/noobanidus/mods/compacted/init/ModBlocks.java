@@ -46,15 +46,15 @@ public class ModBlocks {
             .addIngredient(Tags.Items.COBBLESTONE)
             .addIngredient(Tags.Items.COBBLESTONE)
             .addCriterion("has_cobblestone", p.hasItem(Tags.Items.COBBLESTONE))
-            .build(p, "compacted_cobblestone_from_cobblestone");
+            .build(p, new ResourceLocation(Compacted.MODID, "compacted_cobblestone_from_cobblestone"));
         ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry(), 9)
             .addIngredient(CompactedTags.Items.DOUBLE_COMPACTED_COBBLESTONE)
             .addCriterion("has_double_compacted", p.hasItem(CompactedTags.Items.DOUBLE_COMPACTED_COBBLESTONE))
-            .build(p, "compacted_cobblestone_from_double_compacted_cobblestone");
+            .build(p, new ResourceLocation(Compacted.MODID, "compacted_cobblestone_from_double_compacted_cobblestone"));
         ShapelessRecipeBuilder.shapelessRecipe(Items.COBBLESTONE, 9)
             .addIngredient(CompactedTags.Items.COMPACTED_COBBLESTONE)
             .addCriterion("has_double_compacted", p.hasItem(CompactedTags.Items.COMPACTED_COBBLESTONE))
-            .build(p, "cobblestone_from_compacted_cobblestone");
+            .build(p, new ResourceLocation(Compacted.MODID, "cobblestone_from_compacted_cobblestone"));
       })
       .item()
       .tag(CompactedTags.Items.COMPACTED_COBBLESTONE)
@@ -76,7 +76,7 @@ public class ModBlocks {
               .addIngredient(CompactedTags.Items.COMPACTED_COBBLESTONE)
               .addIngredient(CompactedTags.Items.COMPACTED_COBBLESTONE)
               .addCriterion("has_compacted_cobblestone", p.hasItem(CompactedTags.Items.COMPACTED_COBBLESTONE))
-              .build(p)
+              .build(p, new ResourceLocation(Compacted.MODID, "double_compacted_cobblestone_from_compacted_cobblestone"))
       )
       .item()
       .tag(CompactedTags.Items.DOUBLE_COMPACTED_COBBLESTONE)
@@ -98,11 +98,11 @@ public class ModBlocks {
             .key('C', Ingredient.fromItems(Items.COAL, Items.CHARCOAL))
             .addCriterion("has_rod", p.hasItem(CompactedTags.Items.STONE_ROD))
             .addCriterion("has_coal", p.hasItem(Items.COAL))
-            .build(p);
+            .build(p, new ResourceLocation(Compacted.MODID, "stone_torch"));
         ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry(), 9)
             .addIngredient(ModBlocks.COMPACTED_STONE_TORCH.get())
             .addCriterion("has_compacted_torch", p.hasItem(ModBlocks.COMPACTED_STONE_TORCH.get()))
-            .build(p, "stone_torches_from_compacted_torch");
+            .build(p, new ResourceLocation(Compacted.MODID, "stone_torches_from_compacted_torch"));
       })
       // TODO: RECIPE
       .register();
@@ -131,7 +131,7 @@ public class ModBlocks {
         ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry(), 9)
             .addIngredient(ModBlocks.DOUBLE_COMPACTED_STONE_TORCH.get())
             .addCriterion("has_double_compacted_torch", p.hasItem(ModBlocks.DOUBLE_COMPACTED_STONE_TORCH.get()))
-            .build(p, "compacted_stone_torches_from_double_compacted_torch");
+            .build(p, new ResourceLocation(Compacted.MODID, "compacted_stone_torches_from_double_compacted_torch"));
       })
       .register();
 

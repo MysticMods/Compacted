@@ -10,7 +10,7 @@
       "tag": "forge:rods/stone/compacted/double"
     },
     "#": {
-      "tag": "forge:compacted/cobblestone/double"
+      "tag": "compacted:tier_3_repair"
     }
   },
   "result": {

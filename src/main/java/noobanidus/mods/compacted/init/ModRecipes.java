@@ -8,7 +8,9 @@ import net.minecraft.block.Blocks;
 import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.tags.Tag;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
+import noobanidus.mods.compacted.Compacted;
 import noobanidus.mods.compacted.CompactedTags;
 import noobanidus.mods.compacted.recipes.ImpacterRecipe;
 import noobanidus.mods.compacted.recipes.RepairRecipe;
@@ -36,7 +38,7 @@ public class ModRecipes {
         .addIngredient(tag)
         .addIngredient(tag)
         .addCriterion("has_" + startName, p.hasItem(tag))
-        .build(p, compressedName + "_from_" + startName);
+        .build(p, new ResourceLocation(Compacted.MODID, compressedName + "_from_" + startName));
     ShapelessRecipeBuilder.shapelessRecipe(doubleCompressed.get(), 1)
         .addIngredient(compressed.get())
         .addIngredient(compressed.get())
@@ -48,16 +50,16 @@ public class ModRecipes {
         .addIngredient(compressed.get())
         .addIngredient(compressed.get())
         .addCriterion("has_" + compressedName, p.hasItem(compressed.get()))
-        .build(p, doubleName + "_from_" + compressedName);
+        .build(p, new ResourceLocation(Compacted.MODID, doubleName + "_from_" + compressedName));
     // Uncompression
     ShapelessRecipeBuilder.shapelessRecipe(start, 9)
         .addIngredient(compressed.get())
         .addCriterion("has_" + compressedName, p.hasItem(compressed.get()))
-        .build(p, startName + "_from_" + compressedName);
+        .build(p, new ResourceLocation(Compacted.MODID, startName + "_from_" + compressedName));
     ShapelessRecipeBuilder.shapelessRecipe(compressed.get(), 9)
         .addIngredient(doubleCompressed.get())
         .addCriterion("has_" + doubleName, p.hasItem(doubleCompressed.get()))
-        .build(p, compressedName + "_from_" + doubleName);
+        .build(p, new ResourceLocation(Compacted.MODID, compressedName + "_from_" + doubleName));
   }
 
   static {

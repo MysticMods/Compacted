@@ -6,12 +6,12 @@
     ]
   },
   "criteria": {
-    "has_cobblestone": {
+    "has_stone": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "forge:cobblestone"
+            "tag": "compacted:tier_1_repair"
           }
         ]
       }
@@ -35,7 +35,7 @@
   },
   "requirements": [
     [
-      "has_cobblestone",
+      "has_stone",
       "has_rod",
       "has_the_recipe"
     ]
