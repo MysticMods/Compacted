@@ -4,7 +4,6 @@
     "compacted:compacted_andesite",
     "compacted:compacted_diorite",
     "compacted:compacted_granite",
-    "compacted:compacted_smooth_stone",
-    "compacted:compacted_stone"
+    "compacted:compacted_smooth_stone"
   ]
 }
