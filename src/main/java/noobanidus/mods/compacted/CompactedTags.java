@@ -11,6 +11,9 @@ import java.util.function.Function;
 
 public class CompactedTags {
   public static class Items {
+    public static Tag<Item> COMPACTED_STONE = itemTag("forge", "compacted/stone/single");
+    public static Tag<Item> DOUBLE_COMPACTED_STONE = itemTag("forge", "compacted/stone/double");
+
     public static Tag<Item> COMPACTED_COBBLESTONE = itemTag("forge", "compacted/cobblestone/single");
     public static Tag<Item> DOUBLE_COMPACTED_COBBLESTONE = itemTag("forge", "compacted/cobblestone/double");
 
