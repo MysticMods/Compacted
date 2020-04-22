@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "compacted:compacted_andesite_from_andesite"
+    ]
+  },
+  "criteria": {
+    "has_andesite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:andesite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "compacted:compacted_andesite_from_andesite"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_andesite",
+      "has_the_recipe"
+    ]
+  ]
+}

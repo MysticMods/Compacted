@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "compacted:double_compacted_stone_from_compacted_stone"
+    ]
+  },
+  "criteria": {
+    "has_compacted_stone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "compacted:compacted_stone"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "compacted:double_compacted_stone_from_compacted_stone"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_compacted_stone",
+      "has_the_recipe"
+    ]
+  ]
+}

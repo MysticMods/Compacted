@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "compacted:compacted_stone"
+    },
+    {
+      "item": "compacted:compacted_stone"
+    },
+    {
+      "item": "compacted:compacted_stone"
+    },
+    {
+      "item": "compacted:compacted_stone"
+    },
+    {
+      "item": "compacted:compacted_stone"
+    },
+    {
+      "item": "compacted:compacted_stone"
+    },
+    {
+      "item": "compacted:compacted_stone"
+    },
+    {
+      "item": "compacted:compacted_stone"
+    },
+    {
+      "item": "compacted:compacted_stone"
+    }
+  ],
+  "result": {
+    "item": "compacted:double_compacted_stone"
+  }
+}

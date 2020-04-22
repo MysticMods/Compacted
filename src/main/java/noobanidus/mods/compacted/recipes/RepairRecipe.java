@@ -150,18 +150,18 @@ public class RepairRecipe extends SpecialRecipe {
       }
 
       if (thisTier == tierNum) {
-        count += 2;
+        count += 3;
       } else if (thisTier < tierNum) {
         count += Math.min(1, 2 - (tierNum - thisTier));
       } else {
-        count += 2 + 2 * (thisTier - tierNum);
+        count += (4 * (1 + (thisTier - tierNum)));
       }
     }
     if (count == 0) {
       return ItemStack.EMPTY;
     }
 
-    int toRepair = (int) Math.floor((((float) tier.getMaxUses()) * 0.05) * count);
+    int toRepair = (int) Math.floor((((float) tier.getMaxUses()) * 0.1) * count);
     tool.setDamage(tool.getDamage() - toRepair);
     return tool;
   }

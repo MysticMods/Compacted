@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:granite"
+    },
+    {
+      "tag": "forge:granite"
+    },
+    {
+      "tag": "forge:granite"
+    },
+    {
+      "tag": "forge:granite"
+    },
+    {
+      "tag": "forge:granite"
+    },
+    {
+      "tag": "forge:granite"
+    },
+    {
+      "tag": "forge:granite"
+    },
+    {
+      "tag": "forge:granite"
+    },
+    {
+      "tag": "forge:granite"
+    }
+  ],
+  "result": {
+    "item": "compacted:compacted_granite"
+  }
+}

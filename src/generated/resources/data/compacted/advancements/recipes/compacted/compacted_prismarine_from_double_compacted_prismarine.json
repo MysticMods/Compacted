@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "compacted:compacted_prismarine_from_double_compacted_prismarine"
+    ]
+  },
+  "criteria": {
+    "has_double_compacted_prismarine": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "compacted:double_compacted_prismarine"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "compacted:compacted_prismarine_from_double_compacted_prismarine"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_double_compacted_prismarine",
+      "has_the_recipe"
+    ]
+  ]
+}
