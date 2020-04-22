@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "compacted:double_compacted_diorite"
+    }
+  ],
+  "result": {
+    "item": "compacted:compacted_diorite",
+    "count": 9
+  }
+}

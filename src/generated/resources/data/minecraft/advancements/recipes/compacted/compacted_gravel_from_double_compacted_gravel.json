@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:compacted_gravel_from_double_compacted_gravel"
+    ]
+  },
+  "criteria": {
+    "has_double_compacted_gravel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "compacted:double_compacted_gravel"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:compacted_gravel_from_double_compacted_gravel"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_double_compacted_gravel",
+      "has_the_recipe"
+    ]
+  ]
+}

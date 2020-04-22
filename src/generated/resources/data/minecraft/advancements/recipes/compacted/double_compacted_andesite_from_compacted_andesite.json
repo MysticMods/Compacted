@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:double_compacted_andesite_from_compacted_andesite"
+    ]
+  },
+  "criteria": {
+    "has_compacted_andesite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "compacted:compacted_andesite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:double_compacted_andesite_from_compacted_andesite"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_compacted_andesite",
+      "has_the_recipe"
+    ]
+  ]
+}

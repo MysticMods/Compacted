@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "compacted:double_compacted_andesite",
+    "compacted:double_compacted_diorite",
+    "compacted:double_compacted_granite",
+    "compacted:double_compacted_smooth_stone",
+    "compacted:double_compacted_stone"
+  ]
+}

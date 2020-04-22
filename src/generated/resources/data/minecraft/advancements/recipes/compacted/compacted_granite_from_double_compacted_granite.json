@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:compacted_granite_from_double_compacted_granite"
+    ]
+  },
+  "criteria": {
+    "has_double_compacted_granite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "compacted:double_compacted_granite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:compacted_granite_from_double_compacted_granite"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_double_compacted_granite",
+      "has_the_recipe"
+    ]
+  ]
+}

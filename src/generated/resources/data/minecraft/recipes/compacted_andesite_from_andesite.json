@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:andesite"
+    },
+    {
+      "tag": "forge:andesite"
+    },
+    {
+      "tag": "forge:andesite"
+    },
+    {
+      "tag": "forge:andesite"
+    },
+    {
+      "tag": "forge:andesite"
+    },
+    {
+      "tag": "forge:andesite"
+    },
+    {
+      "tag": "forge:andesite"
+    },
+    {
+      "tag": "forge:andesite"
+    },
+    {
+      "tag": "forge:andesite"
+    }
+  ],
+  "result": {
+    "item": "compacted:compacted_andesite"
+  }
+}
