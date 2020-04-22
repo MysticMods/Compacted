@@ -10,7 +10,7 @@
       "tag": "forge:rods/stone/compacted/single"
     },
     "#": {
-      "tag": "forge:compacted/cobblestone/single"
+      "tag": "compacted:tier_2_repair"
     }
   },
   "result": {

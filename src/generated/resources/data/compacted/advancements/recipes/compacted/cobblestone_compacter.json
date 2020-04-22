@@ -2,26 +2,36 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "minecraft:stone_hammer_from_stone"
+      "compacted:cobblestone_compacter"
     ]
   },
   "criteria": {
-    "has_cobblestone": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "tag": "forge:stone"
-          }
-        ]
-      }
-    },
     "has_rod": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "forge:rods/stone"
+            "tag": "forge:rods/stone/compacted/double"
+          }
+        ]
+      }
+    },
+    "has_cobble": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:compacted/cobblestone/double"
+          }
+        ]
+      }
+    },
+    "has_piston": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:piston"
           }
         ]
       }
@@ -29,14 +39,15 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "minecraft:stone_hammer_from_stone"
+        "recipe": "compacted:cobblestone_compacter"
       }
     }
   },
   "requirements": [
     [
-      "has_cobblestone",
       "has_rod",
+      "has_cobble",
+      "has_piston",
       "has_the_recipe"
     ]
   ]

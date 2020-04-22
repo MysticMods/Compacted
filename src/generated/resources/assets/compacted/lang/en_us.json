@@ -34,6 +34,8 @@
   "block.compacted.double_compacted_stone_torch": "Double Compacted Stone Torch",
   "block.compacted.double_compacted_terracotta": "Double Compacted Terracotta",
   "block.compacted.stone_torch": "Stone Torch",
+  "item.compacted.cobblestone_compacter": "Cobblestone Compacter",
+  "item.compacted.cobblestone_impacter": "Cobblestone Impacter",
   "item.compacted.compacted_excavator": "Compacted Excavator",
   "item.compacted.compacted_hammer": "Compacted Hammer",
   "item.compacted.compacted_heavy_axe": "Compacted Heavy Axe",
@@ -44,14 +46,12 @@
   "item.compacted.double_compacted_heavy_axe": "Double Compacted Heavy Axe",
   "item.compacted.double_compacted_paxel": "Double Compacted Paxel",
   "item.compacted.double_compacted_rod": "Double Compacted Rod",
-  "item.compacted.pocket_compacter": "Pocket Compacter",
-  "item.compacted.pocket_impacter": "Pocket Impacter",
   "item.compacted.stone_excavator": "Stone Excavator",
   "item.compacted.stone_hammer": "Stone Hammer",
   "item.compacted.stone_heavy_axe": "Stone Heavy Axe",
   "item.compacted.stone_paxel": "Stone Paxel",
   "item.compacted.stone_rod": "Stone Rod",
-  "subtitles.compacted.item.toggled": "Pocket Impacter toggled",
+  "subtitles.compacted.item.toggled": "Item mode toggled",
   "tooltip.compacted.hold_shift": "[Hold shift for more]",
   "tooltip.compacted.impacter_active": "Active.",
   "tooltip.compacted.impacter_inactive": "Inactive.",
@@ -61,5 +61,6 @@
   "tooltip.compacted.pocket_impacter.desc1": "Contains %s cobblestone. %s",
   "tooltip.compacted.pocket_impacter.desc2": "Consumes cobblestone from your inventory. Can be crafted shapelessly to extract cobblestone.",
   "tooltip.compacted.pocket_impacter.desc3": "Can also be used to place cobblestone from its reserves, and will instantly break cobblestone.",
-  "tooltip.compacted.sneak_right_click": "Sneak-right-click empty air to toggle active/inactive."
+  "tooltip.compacted.pocket_impacter.desc4": "Functions more rapidly when enchanted with Efficiency.",
+  "tooltip.compacted.sneak_right_click": "Sneak-right-click empty air to toggle between active/inactive."
 }

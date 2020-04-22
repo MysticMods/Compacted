@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "forge:compacted/cobblestone/double"
+            "tag": "compacted:tier_3_repair"
           }
         ]
       }
