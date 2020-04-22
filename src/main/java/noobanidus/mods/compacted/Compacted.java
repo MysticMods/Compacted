@@ -49,6 +49,7 @@ public class Compacted {
     ModRecipes.load();
     ModSounds.load();
     ModLang.load();
+    ModTags.load();
 
     IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 

@@ -12,6 +12,7 @@ import net.minecraft.item.crafting.SpecialRecipeSerializer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.Tags;
+import noobanidus.mods.compacted.Compacted;
 import noobanidus.mods.compacted.CompactedTags;
 import noobanidus.mods.compacted.init.ModRecipes;
 import noobanidus.mods.compacted.items.EffectiveToolItem;
@@ -21,6 +22,10 @@ import noobanidus.mods.compacted.materials.DoubleCompactedStoneMaterial;
 
 @SuppressWarnings("Duplicates")
 public class RepairRecipe extends SpecialRecipe {
+  public static Ingredient TIER1 = Ingredient.EMPTY;
+  public static Ingredient TIER2 = Ingredient.EMPTY;
+  public static Ingredient TIER3 = Ingredient.EMPTY;
+
   public RepairRecipe(ResourceLocation idIn) {
     super(idIn);
   }
@@ -30,10 +35,15 @@ public class RepairRecipe extends SpecialRecipe {
     boolean found = false;
     int slot = -1;
     int count = 0;
-    Ingredient tier11 = Ingredient.fromTag(Tags.Items.STONE);
-    Ingredient tier12 = Ingredient.fromTag(Tags.Items.COBBLESTONE);
-    Ingredient tier2 = Ingredient.fromTag(CompactedTags.Items.COMPACTED_COBBLESTONE);
-    Ingredient tier3 = Ingredient.fromTag(CompactedTags.Items.DOUBLE_COMPACTED_COBBLESTONE);
+    if (TIER1 == Ingredient.EMPTY) {
+      TIER1 = Ingredient.fromTag(CompactedTags.Items.TIER1);
+    }
+    if (TIER2 == Ingredient.EMPTY) {
+      TIER2 = Ingredient.fromTag(CompactedTags.Items.TIER2);
+    }
+    if (TIER3 == Ingredient.EMPTY) {
+      TIER3 = Ingredient.fromTag(CompactedTags.Items.TIER3);
+    }
     for (int i = 0; i < inv.getSizeInventory(); i++) {
       ItemStack inSlot = inv.getStackInSlot(i);
       if (inSlot.isEmpty()) {
@@ -60,11 +70,11 @@ public class RepairRecipe extends SpecialRecipe {
       ItemStack inSlot = inv.getStackInSlot(i);
 
       int thisTier = 0;
-      if (tier11.test(inSlot) || tier12.test(inSlot)) {
+      if (TIER1.test(inSlot)) {
         thisTier = 1;
-      } else if (tier2.test(inSlot)) {
+      } else if (TIER2.test(inSlot)) {
         thisTier = 2;
-      } else if (tier3.test(inSlot)) {
+      } else if (TIER3.test(inSlot)) {
         thisTier = 3;
       } else if (!inSlot.isEmpty()) {
         return false;
@@ -85,10 +95,15 @@ public class RepairRecipe extends SpecialRecipe {
     int slot = -1;
     int count = 0;
 
-    Ingredient tier11 = Ingredient.fromTag(Tags.Items.STONE);
-    Ingredient tier12 = Ingredient.fromTag(Tags.Items.COBBLESTONE);
-    Ingredient tier2 = Ingredient.fromTag(CompactedTags.Items.COMPACTED_COBBLESTONE);
-    Ingredient tier3 = Ingredient.fromTag(CompactedTags.Items.DOUBLE_COMPACTED_COBBLESTONE);
+    if (TIER1 == Ingredient.EMPTY) {
+      TIER1 = Ingredient.fromTag(CompactedTags.Items.TIER1);
+    }
+    if (TIER2 == Ingredient.EMPTY) {
+      TIER2 = Ingredient.fromTag(CompactedTags.Items.TIER2);
+    }
+    if (TIER3 == Ingredient.EMPTY) {
+      TIER3 = Ingredient.fromTag(CompactedTags.Items.TIER3);
+    }
 
     int tierNum = 0;
 
@@ -124,11 +139,11 @@ public class RepairRecipe extends SpecialRecipe {
       ItemStack inSlot = inv.getStackInSlot(i);
 
       int thisTier = 0;
-      if (tier11.test(inSlot) || tier12.test(inSlot)) {
+      if (TIER1.test(inSlot)) {
         thisTier = 1;
-      } else if (tier2.test(inSlot)) {
+      } else if (TIER2.test(inSlot)) {
         thisTier = 2;
-      } else if (tier3.test(inSlot)) {
+      } else if (TIER3.test(inSlot)) {
         thisTier = 3;
       } else if (!inSlot.isEmpty()) {
         return ItemStack.EMPTY;
