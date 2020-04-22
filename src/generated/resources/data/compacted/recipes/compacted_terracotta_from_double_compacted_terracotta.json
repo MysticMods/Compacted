@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "compacted:double_compacted_terracotta"
+    }
+  ],
+  "result": {
+    "item": "compacted:compacted_terracotta",
+    "count": 9
+  }
+}

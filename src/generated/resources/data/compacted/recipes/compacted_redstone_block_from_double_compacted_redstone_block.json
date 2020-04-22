@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "compacted:double_compacted_redstone_block"
+    }
+  ],
+  "result": {
+    "item": "compacted:compacted_redstone_block",
+    "count": 9
+  }
+}

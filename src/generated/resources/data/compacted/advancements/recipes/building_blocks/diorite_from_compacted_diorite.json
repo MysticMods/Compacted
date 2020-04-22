@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "compacted:diorite_from_compacted_diorite"
+    ]
+  },
+  "criteria": {
+    "has_compacted_diorite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "compacted:compacted_diorite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "compacted:diorite_from_compacted_diorite"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_compacted_diorite",
+      "has_the_recipe"
+    ]
+  ]
+}

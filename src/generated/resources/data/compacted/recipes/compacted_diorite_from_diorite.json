@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:diorite"
+    },
+    {
+      "tag": "forge:diorite"
+    },
+    {
+      "tag": "forge:diorite"
+    },
+    {
+      "tag": "forge:diorite"
+    },
+    {
+      "tag": "forge:diorite"
+    },
+    {
+      "tag": "forge:diorite"
+    },
+    {
+      "tag": "forge:diorite"
+    },
+    {
+      "tag": "forge:diorite"
+    },
+    {
+      "tag": "forge:diorite"
+    }
+  ],
+  "result": {
+    "item": "compacted:compacted_diorite"
+  }
+}

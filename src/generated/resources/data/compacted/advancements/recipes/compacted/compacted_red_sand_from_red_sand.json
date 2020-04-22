@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "compacted:compacted_red_sand_from_red_sand"
+    ]
+  },
+  "criteria": {
+    "has_red_sand": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:sand/red"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "compacted:compacted_red_sand_from_red_sand"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_red_sand",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "compacted:compacted_netherrack_from_double_compacted_netherrack"
+    ]
+  },
+  "criteria": {
+    "has_double_compacted_netherrack": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "compacted:double_compacted_netherrack"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "compacted:compacted_netherrack_from_double_compacted_netherrack"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_double_compacted_netherrack",
+      "has_the_recipe"
+    ]
+  ]
+}

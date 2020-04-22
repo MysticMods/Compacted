@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "compacted:compacted_prismarine"
+    },
+    {
+      "item": "compacted:compacted_prismarine"
+    },
+    {
+      "item": "compacted:compacted_prismarine"
+    },
+    {
+      "item": "compacted:compacted_prismarine"
+    },
+    {
+      "item": "compacted:compacted_prismarine"
+    },
+    {
+      "item": "compacted:compacted_prismarine"
+    },
+    {
+      "item": "compacted:compacted_prismarine"
+    },
+    {
+      "item": "compacted:compacted_prismarine"
+    },
+    {
+      "item": "compacted:compacted_prismarine"
+    }
+  ],
+  "result": {
+    "item": "compacted:double_compacted_prismarine"
+  }
+}
