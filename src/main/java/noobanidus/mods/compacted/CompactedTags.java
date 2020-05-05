@@ -33,6 +33,12 @@ public class CompactedTags {
     public static Tag<Item> STONE_ROD = itemTag("forge", "rods/stone");
     public static Tag<Item> COMPACTED_STONE_ROD = itemTag("forge", "rods/stone/compacted/single");
     public static Tag<Item> DOUBLE_COMPACTED_STONE_ROD = itemTag("forge", "rods/stone/compacted/double");
+
+    public static Tag<Item> COMPRESSED_DIRT = itemTag("forge", "storage_blocks/compressed_dirt");
+    public static Tag<Item> DOUBLE_COMPRESSED_DIRT = itemTag("forge", "storage_blocks/double_compressed_dirt");
+
+    public static Tag<Item> COMPRESSED_STONE = itemTag("forge", "storage_blocks/compressed_stone");
+    public static Tag<Item> DOUBLE_COMPRESSED_STONE = itemTag("forge", "storage_blocks/double_compressed_stone");
   }
 
   public static class Blocks {
