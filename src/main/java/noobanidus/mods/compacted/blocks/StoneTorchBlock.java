@@ -4,8 +4,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.IWaterLoggable;
 import net.minecraft.block.TorchBlock;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.fluid.IFluidState;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
@@ -23,7 +23,7 @@ public class StoneTorchBlock extends TorchBlock implements IWaterLoggable {
   public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
   public StoneTorchBlock(Block.Properties properties) {
-    super(properties);
+    super(properties, ParticleTypes.FLAME);
     this.setDefaultState(this.getDefaultState().with(WATERLOGGED, false));
   }
 
@@ -47,7 +47,7 @@ public class StoneTorchBlock extends TorchBlock implements IWaterLoggable {
   }
 
   @Override
-  public IFluidState getFluidState(BlockState state) {
+  public FluidState getFluidState(BlockState state) {
     return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
   }
 

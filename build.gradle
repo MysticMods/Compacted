@@ -10,45 +10,50 @@ buildscript {
             name = "sonatype"
             url = "https://oss.sonatype.org/content/repositories/snapshots/"
         }
+        maven {
+            url = 'https://dist.creeper.host/Sponge/maven'
+        }
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.0.+', changing: true
+        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
     }
 }
 plugins {
     id 'com.github.johnrengelman.shadow' version '5.2.0'
 }
+
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'maven-publish'
 apply plugin: 'eclipse'
+apply plugin: 'org.spongepowered.mixin'
 
 version = "${minecraft_version}-${mod_version}"
-group = 'noobanidus.mods.compacted' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'Compacted'
+if (System.getenv('BUILD_NUMBER') != null) {
+    version = "${minecraft_version}-${mod_version}-" + System.getenv('BUILD_NUMBER')
+}
+group = 'noobanidus.mods' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = 'compacted'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 
-minecraft {
-    // The mappings can be changed at any time, and must be in the following format.
-    // snapshot_YYYYMMDD   Snapshot are built nightly.
-    // stable_#            Stables are built at the discretion of the MCP team.
-    // Use non-default mappings at your own risk. they may not always work.
-    // Simply re-run your setup task after changing the mappings to update your workspace.
-    mappings channel: 'snapshot', version: "${mcp_mappings}"
-    // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
-    
-	accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
-    // Default run configurations.
-    // These can be tweaked, removed, or duplicated as needed.
+minecraft {
+    mappings channel: 'snapshot', version: "${mcp_mappings}"
+
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+
     runs {
         client {
             workingDirectory project.file('run')
 
             // Recommended logging data for a userdev environment
+            //property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
 
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
+/*            arg "-mixin.config=compacted.mixins.json"*/
+            property 'mixin.env.disableRefMap', 'true'
 
             mods {
                 compacted {
@@ -61,9 +66,12 @@ minecraft {
             workingDirectory project.file('run')
 
             // Recommended logging data for a userdev environment
+            //property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
 
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
+/*            arg "-mixin.config=compacted.mixins.json"*/
+            property 'mixin.env.disableRefMap', 'true'
 
             mods {
                 compacted {
@@ -75,59 +83,100 @@ minecraft {
         data {
             workingDirectory project.file('run')
 
+            environment 'target', 'fmluserdevdata'
+
             // Recommended logging data for a userdev environment
+            //property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
 
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
+/*            arg "-mixin.config=compacted.mixins.json"*/
+            property 'mixin.env.disableRefMap', 'true'
+
+            args '--mod', 'compacted', '--all', '--output', file('src/generated/resources/'), '--existing', sourceSets.main.resources.srcDirs[0]
 
             mods {
                 compacted {
                     source sourceSets.main
                 }
             }
-
-            args '--mod', 'compacted', '--all', '--output', '"' + rootProject.file('src/generated/resources/') + '"', '--existing', '"' + rootProject.file('src/main/resources')
         }
+    }
+}
+
+repositories {
+    maven {
+        url 'https://maven.mcmoddev.com'
+    }
+    maven {
+        name = "Jared"
+        url = "https://maven.blamejared.com"
+    }
+    maven {
+        url "http://maven.tterrag.com"
+    }
+    maven {
+        // location of the maven that hosts JEI files
+        name = "Progwml6 maven"
+        url = "https://dvs1.progwml6.com/files/maven/"
+    }
+    maven {
+        name = "JER"
+        url = "https://dl.bintray.com/way2muchnoise/dev"
+    }
+    maven { url = 'https://repo.spongepowered.org/maven/' }
+
+    maven { url = 'https://dist.creeper.host/Sponge/maven' }
+    jcenter()
+    mavenCentral()
+    flatDir {
+        dirs 'libs'
     }
 }
 
 configurations {
     shade
 }
-
-sourceSets.main.resources {
-    srcDir 'src/generated/resources'
-}
-
-repositories {
-    maven {
-        url "http://maven.tterrag.com/"
-    }
-    maven { // JEI
-        url "http://dvs1.progwml6.com/files/maven"
-    }
-    maven {
-        name = "Jared"
-        url = "https://maven.blamejared.com"
-    }
-}
-
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
-    compile fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
-    def registrate = "com.tterrag.registrate:Registrate:MC${minecraft_version}-${registrate_version}"
+    compile fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
+    compile fg.deobf("mezz.jei:jei-${jei_version}")
+
+    def registrate = "com.tterrag.registrate:Registrate:${registrate_version}"
     implementation fg.deobf(registrate)
     shade registrate
 
     def noobutil = "noobanidus.libs:noobutil:${minecraft_version}-${noobutil_version}"
     implementation fg.deobf(noobutil)
     shade noobutil
+
+    compile 'org.spongepowered:mixin:0.8'
+    annotationProcessor 'org.spongepowered:mixin:0.8:processor'
+}
+
+sourceSets.main.resources {
+    srcDir 'src/generated/resources'
+}
+
+jar {
+    manifest {
+        attributes([
+                "Specification-Title"     : "Compacted",
+                "Specification-Vendor"    : "Noobanidus",
+                "Specification-Version"   : "1", // We are version 1 of ourselves
+                "Implementation-Title"    : project.name,
+                "Implementation-Version"  : "${version}",
+                "Implementation-Vendor"   : "Noobanidus",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+/*                "MixinConfigs"            : "compacted.mixins.json"*/
+        ])
+    }
 }
 
 shadowJar {
     configurations = [project.configurations.shade]
-    relocate 'com.tterrag.registrate', 'noobanidus.mods.repack_compacted.registrate'
+    relocate 'com.tterrag.registrate', 'epicsquid.compacted.repack.registrate'
     relocate 'noobanidus.libs.noobutil', 'noobanidus.libs.repack_compacted.noobutil'
     classifier ''
 }
@@ -140,18 +189,49 @@ reobf {
 
 build.dependsOn reobfShadowJar
 
+task apiJar(type: Jar) {
+    from(sourceSets.main.output)
+    include 'epicsquid/compacted/api/**'
 
-// Example for how to get properties into the manifest for reading by the runtime..
-jar {
-    manifest {
-        attributes([
-            "Specification-Title": "Compacted",
-            "Specification-Vendor": "Noobanidus",
-            "Specification-Version": "1.1", // We are version 1 of ourselves
-            "Implementation-Title": project.name,
-            "Implementation-Version": "${version}",
-            "Implementation-Vendor" :"noobanidus",
-            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
-        ])
+    classifier = 'api'
+}
+
+task deobfJar(type: Jar) {
+    from sourceSets.main.output
+    classifier = 'deobf'
+}
+
+build.dependsOn apiJar
+build.dependsOn deobfJar
+
+/*mixin {
+    add sourceSets.main, "compacted.refmap.json"
+}*/
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId project.group
+            artifactId project.archivesBaseName
+            version project.version
+            from components.java
+
+            artifact apiJar {
+            }
+
+            artifact shadowJar {
+            }
+
+            pom.withXml {
+                asNode().dependencies.dependency.each {
+                    dep -> dep.parent().remove(dep)
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            url "file:///" + System.getenv("local_maven")
+        }
     }
 }

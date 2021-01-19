@@ -15,12 +15,11 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.state.IProperty;
+import net.minecraft.state.Property;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.text.*;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -113,19 +112,19 @@ public class CobblestoneImpacter extends PocketItem {
     super.addInformation(stack, worldIn, tooltip, flagIn);
 
     tooltip.add(new StringTextComponent(""));
-    tooltip.add(new TranslationTextComponent("tooltip.compacted.pocket_impacter.desc1", countContained(stack), isActive(stack) ? new TranslationTextComponent("tooltip.compacted.impacter_active").setStyle(new Style().setColor(TextFormatting.AQUA)) : new TranslationTextComponent("tooltip.compacted.impacter_inactive").setStyle(new Style().setColor(TextFormatting.DARK_PURPLE))).setStyle(new Style().setColor(TextFormatting.DARK_GRAY)));
+    tooltip.add(new TranslationTextComponent("tooltip.compacted.pocket_impacter.desc1", countContained(stack), isActive(stack) ? new TranslationTextComponent("tooltip.compacted.impacter_active").setStyle(Style.EMPTY.setColor(Color.fromTextFormatting(TextFormatting.AQUA))) : new TranslationTextComponent("tooltip.compacted.impacter_inactive").setStyle(Style.EMPTY.setColor(Color.fromTextFormatting(TextFormatting.DARK_PURPLE)))).setStyle(Style.EMPTY.setColor(Color.fromTextFormatting(TextFormatting.DARK_GRAY))));
     tooltip.add(new StringTextComponent(""));
-    tooltip.add(new TranslationTextComponent("tooltip.compacted.sneak_right_click").setStyle(new Style().setColor(TextFormatting.DARK_GRAY)));
+    tooltip.add(new TranslationTextComponent("tooltip.compacted.sneak_right_click").setStyle(Style.EMPTY.setColor(Color.fromTextFormatting(TextFormatting.DARK_GRAY))));
     if (Screen.hasShiftDown()) {
       tooltip.add(new StringTextComponent(""));
-      tooltip.add(new TranslationTextComponent("tooltip.compacted.pocket_impacter.desc2").setStyle(new Style().setColor(TextFormatting.DARK_GRAY)));
+      tooltip.add(new TranslationTextComponent("tooltip.compacted.pocket_impacter.desc2").setStyle(Style.EMPTY.setColor(Color.fromTextFormatting(TextFormatting.DARK_GRAY))));
       tooltip.add(new StringTextComponent(""));
-      tooltip.add(new TranslationTextComponent("tooltip.compacted.pocket_impacter.desc3").setStyle(new Style().setColor(TextFormatting.DARK_GRAY)));
+      tooltip.add(new TranslationTextComponent("tooltip.compacted.pocket_impacter.desc3").setStyle(Style.EMPTY.setColor(Color.fromTextFormatting(TextFormatting.DARK_GRAY))));
       tooltip.add(new StringTextComponent(""));
-      tooltip.add(new TranslationTextComponent("tooltip.compacted.pocket_impacter.desc4").setStyle(new Style().setColor(TextFormatting.LIGHT_PURPLE)));
+      tooltip.add(new TranslationTextComponent("tooltip.compacted.pocket_impacter.desc4").setStyle(Style.EMPTY.setColor(Color.fromTextFormatting(TextFormatting.LIGHT_PURPLE))));
     } else {
       tooltip.add(new StringTextComponent(""));
-      tooltip.add(new TranslationTextComponent("tooltip.compacted.hold_shift").setStyle(new Style().setColor(TextFormatting.DARK_GRAY)));
+      tooltip.add(new TranslationTextComponent("tooltip.compacted.hold_shift").setStyle(Style.EMPTY.setColor(Color.fromTextFormatting(TextFormatting.DARK_GRAY))));
     }
   }
 
@@ -186,7 +185,7 @@ public class CobblestoneImpacter extends PocketItem {
       StateContainer<Block, BlockState> statecontainer = state.getBlock().getStateContainer();
 
       for (String s : compoundnbt1.keySet()) {
-        IProperty<?> iproperty = statecontainer.getProperty(s);
+        Property<?> iproperty = statecontainer.getProperty(s);
         if (iproperty != null) {
           String s1 = Objects.requireNonNull(compoundnbt1.get(s)).getString();
           blockstate = setStatePropertyFromString(blockstate, iproperty, s1);
@@ -201,13 +200,12 @@ public class CobblestoneImpacter extends PocketItem {
     return blockstate;
   }
 
-  private static <T extends Comparable<T>> BlockState setStatePropertyFromString(BlockState state, IProperty<T> property, String value) {
+  private static <T extends Comparable<T>> BlockState setStatePropertyFromString(BlockState state, Property<T> property, String value) {
     return property.parseValue(value).map((p) -> state.with(property, p)).orElse(state);
   }
 
   private boolean canPlace(BlockItemUseContext context, BlockState state) {
     PlayerEntity playerentity = context.getPlayer();
-    ISelectionContext iselectioncontext = playerentity == null ? ISelectionContext.dummy() : ISelectionContext.forEntity(playerentity);
-    return (state.isValidPosition(context.getWorld(), context.getPos())) && context.getWorld().canPlace(state, context.getPos(), iselectioncontext);
+    return (state.isValidPosition(context.getWorld(), context.getPos())) && context.canPlace();
   }
 }

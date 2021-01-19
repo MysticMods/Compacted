@@ -134,10 +134,10 @@ public class CobblestoneCompacter extends PocketItem {
 
     tooltip.add(new StringTextComponent(""));
     if (stack.getDamage() == stack.getMaxDamage() - 1) {
-      tooltip.add(new TranslationTextComponent("tooltip.compacted.pocket_compacter.broken").setStyle(new Style().setColor(TextFormatting.DARK_RED).setBold(true)));
+      tooltip.add(new TranslationTextComponent("tooltip.compacted.pocket_compacter.broken").setStyle(Style.EMPTY.setColor(Color.fromTextFormatting(TextFormatting.DARK_RED)).setBold(true)));
     }
-    tooltip.add(new TranslationTextComponent("tooltip.compacted.pocket_compacter.desc1", isActive(stack) ? new TranslationTextComponent("tooltip.compacted.impacter_active").setStyle(new Style().setColor(TextFormatting.AQUA)) : new TranslationTextComponent("tooltip.compacted.impacter_inactive").setStyle(new Style().setColor(TextFormatting.DARK_PURPLE))).setStyle(new Style().setColor(TextFormatting.DARK_GRAY)));
+    tooltip.add(new TranslationTextComponent("tooltip.compacted.pocket_compacter.desc1", isActive(stack) ? new TranslationTextComponent("tooltip.compacted.impacter_active").setStyle(Style.EMPTY.setColor(Color.fromTextFormatting(TextFormatting.AQUA))) : new TranslationTextComponent("tooltip.compacted.impacter_inactive").setStyle(Style.EMPTY.setColor(Color.fromTextFormatting(TextFormatting.DARK_PURPLE)))).setStyle(Style.EMPTY.setColor(Color.fromTextFormatting(TextFormatting.DARK_GRAY))));
     tooltip.add(new StringTextComponent(""));
-    tooltip.add(new TranslationTextComponent("tooltip.compacted.pocket_compacter.desc2").setStyle(new Style().setColor(TextFormatting.LIGHT_PURPLE)));
+    tooltip.add(new TranslationTextComponent("tooltip.compacted.pocket_compacter.desc2").setStyle(Style.EMPTY.setColor(Color.fromTextFormatting(TextFormatting.LIGHT_PURPLE))));
   }
 }

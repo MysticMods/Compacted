@@ -4,8 +4,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.IWaterLoggable;
 import net.minecraft.block.WallTorchBlock;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.fluid.IFluidState;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
@@ -23,7 +23,7 @@ public class WallStoneTorchBlock extends WallTorchBlock implements IWaterLoggabl
   public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
   public WallStoneTorchBlock(Properties properties) {
-    super(properties);
+    super(properties, ParticleTypes.FLAME);
     this.setDefaultState(this.getDefaultState().with(WATERLOGGED, false));
   }
 
@@ -37,7 +37,7 @@ public class WallStoneTorchBlock extends WallTorchBlock implements IWaterLoggabl
     Direction direction1 = direction.getOpposite();
     if (!stateIn.get(WATERLOGGED)) {
       worldIn.addParticle(ParticleTypes.SMOKE, d0 + 0.27D * (double) direction1.getXOffset(), d1 + 0.22D, d2 + 0.27D * (double) direction1.getZOffset(), 0.0D, 0.0D, 0.0D);
-      worldIn.addParticle(ParticleTypes.FLAME, d0 + 0.27D * (double)direction1.getXOffset(), d1 + 0.22D, d2 + 0.27D * (double)direction1.getZOffset(), 0.0D, 0.0D, 0.0D);
+      worldIn.addParticle(ParticleTypes.FLAME, d0 + 0.27D * (double) direction1.getXOffset(), d1 + 0.22D, d2 + 0.27D * (double) direction1.getZOffset(), 0.0D, 0.0D, 0.0D);
     } else {
       worldIn.addParticle(ParticleTypes.BUBBLE_POP, d0 + 0.27D * (double) direction1.getXOffset(), d1 + 0.22D, d2 + 0.27D * (double) direction1.getZOffset(), 0.0D, 0.0D, 0.0D);
     }
@@ -50,7 +50,7 @@ public class WallStoneTorchBlock extends WallTorchBlock implements IWaterLoggabl
 
 
   @Override
-  public IFluidState getFluidState(BlockState state) {
+  public FluidState getFluidState(BlockState state) {
     return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
   }
 

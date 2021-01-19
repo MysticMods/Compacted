@@ -13,11 +13,10 @@ import net.minecraft.client.renderer.model.ModelBakery;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -57,25 +56,25 @@ public class ClientRenderEvents {
         return;
       }
 
-      IRenderTypeBuffer.Impl buffers = Minecraft.getInstance().getBufferBuilders().getEntityVertexConsumers();
+      IRenderTypeBuffer.Impl buffers = Minecraft.getInstance().getRenderTypeBuffers().getBufferSource();
       MatrixStack stack = event.getMatrixStack();
       stack.push();
 
       BlockRayTraceResult trace = (BlockRayTraceResult) ray;
       Set<BlockPos> positions = BreakUtil.nearbyBlocks(tool, trace.getPos(), trace.getFace(), player.world, player);
       ActiveRenderInfo info = mc.gameRenderer.getActiveRenderInfo();
-      Vec3d vec3d = info.getProjectedView();
+      Vector3d vec3d = info.getProjectedView();
       double d0 = vec3d.getX();
       double d1 = vec3d.getY();
       double d2 = vec3d.getZ();
 
       for (BlockPos position : positions) {
-        IVertexBuilder ivertexBuilder = mc.getBufferBuilders().getEntityVertexConsumers().getBuffer(RenderType.getLines());
-        mc.worldRenderer.drawBlockOutline(stack, ivertexBuilder, info.getRenderViewEntity(), d0, d1, d2, position, mc.world.getBlockState(position));
+        IVertexBuilder ivertexBuilder = buffers.getBuffer(RenderType.getLines());
+        mc.worldRenderer.drawSelectionBox(stack, ivertexBuilder, info.getRenderViewEntity(), d0, d1, d2, position, mc.world.getBlockState(position));
       }
 
       stack.pop();
-      buffers.draw();
+      buffers.finish();
 
       if (controller.getIsHittingBlock()) {
         drawBlockDamage(stack, player.world, info, positions, trace.getPos());
@@ -99,7 +98,7 @@ public class ClientRenderEvents {
     }
 
     Minecraft mc = Minecraft.getInstance();
-    RenderTypeBuffers buffers = mc.getBufferBuilders();
+    RenderTypeBuffers buffers = mc.getRenderTypeBuffers();
 
     double d0 = activeRenderInfo.getProjectedView().x;
     double d1 = activeRenderInfo.getProjectedView().y;
@@ -108,28 +107,23 @@ public class ClientRenderEvents {
     boolean drew = false;
     stack.push();
 
-    IRenderTypeBuffer.Impl vertices = buffers.getEffectVertexConsumers();
-    RenderType type = ModelBakery.BLOCK_DESTRUCTION_RENDER_LAYERS.get(progress.getPartialBlockDamage());
-    IVertexBuilder builder = vertices.getBuffer(type);
-    IVertexBuilder ivertexbuilder1 = new MatrixApplyingVertexBuilder(builder, stack.peek());
+    IRenderTypeBuffer.Impl vertices = buffers.getBufferSource();
+    RenderType type = ModelBakery.DESTROY_RENDER_TYPES.get(progress.getPartialBlockDamage());
+    MatrixStack.Entry entry = stack.getLast();
+    IVertexBuilder ivertexbuilder1 = new MatrixApplyingVertexBuilder(mc.worldRenderer.renderTypeTextures.getCrumblingBufferSource().getBuffer(ModelBakery.DESTROY_RENDER_TYPES.get(progress.getPartialBlockDamage())), entry.getMatrix(), entry.getNormal());
 
     for (BlockPos blockpos : positions) {
-      TileEntity te = world.getTileEntity(blockpos);
-      boolean hasBreak = te != null && te.canRenderBreaking();
-
-      if (!hasBreak) {
-        BlockState state = world.getBlockState(blockpos);
-        if (state.getMaterial() != Material.AIR) {
-          stack.push();
-          stack.translate((double) blockpos.getX() - d0, (double) blockpos.getY() - d1, (double) blockpos.getZ() - d2);
-          mc.getBlockRendererDispatcher().renderDamage(Objects.requireNonNull(mc.world).getBlockState(blockpos), blockpos, mc.world, stack, ivertexbuilder1);
-          stack.pop();
-          drew = true;
-        }
+      BlockState state = world.getBlockState(blockpos);
+      if (state.getMaterial() != Material.AIR) {
+        stack.push();
+        stack.translate((double) blockpos.getX() - d0, (double) blockpos.getY() - d1, (double) blockpos.getZ() - d2);
+        mc.getBlockRendererDispatcher().renderBlockDamage(Objects.requireNonNull(mc.world).getBlockState(blockpos), blockpos, mc.world, stack, ivertexbuilder1);
+        stack.pop();
+        drew = true;
       }
     }
     stack.pop();
-    vertices.draw();
+    vertices.finish();
 
     return drew;
   }

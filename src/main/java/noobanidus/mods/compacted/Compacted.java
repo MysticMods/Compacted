@@ -4,8 +4,6 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.PickaxeItem;
-import net.minecraft.item.ShovelItem;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
@@ -14,18 +12,14 @@ import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
-import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import noobanidus.libs.noobutil.registrate.CustomRegistrate;
 import noobanidus.mods.compacted.events.ClientRenderEvents;
 import noobanidus.mods.compacted.events.Mappings;
 import noobanidus.mods.compacted.init.*;
 import noobanidus.mods.compacted.network.Networking;
-import noobanidus.mods.compacted.registrate.CustomRegistrate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.Arrays;
 
 @Mod(Compacted.MODID)
 public class Compacted {
@@ -74,11 +68,13 @@ public class Compacted {
   private void clientSetup(FMLClientSetupEvent event) {
     MinecraftForge.EVENT_BUS.register(ClientRenderEvents.class);
 
-    RenderTypeLookup.setRenderLayer(ModBlocks.COMPACTED_STONE_TORCH.get(), RenderType.getCutout());
-    RenderTypeLookup.setRenderLayer(ModBlocks.STONE_TORCH.get(), RenderType.getCutout());
-    RenderTypeLookup.setRenderLayer(ModBlocks.DOUBLE_COMPACTED_STONE_TORCH.get(), RenderType.getCutout());
-    RenderTypeLookup.setRenderLayer(ModBlocks.COMPACTED_STONE_WALL_TORCH.get(), RenderType.getCutout());
-    RenderTypeLookup.setRenderLayer(ModBlocks.STONE_WALL_TORCH.get(), RenderType.getCutout());
-    RenderTypeLookup.setRenderLayer(ModBlocks.DOUBLE_COMPACTED_STONE_WALL_TORCH.get(), RenderType.getCutout());
+    event.enqueueWork(() -> {
+      RenderTypeLookup.setRenderLayer(ModBlocks.COMPACTED_STONE_TORCH.get(), RenderType.getCutout());
+      RenderTypeLookup.setRenderLayer(ModBlocks.STONE_TORCH.get(), RenderType.getCutout());
+      RenderTypeLookup.setRenderLayer(ModBlocks.DOUBLE_COMPACTED_STONE_TORCH.get(), RenderType.getCutout());
+      RenderTypeLookup.setRenderLayer(ModBlocks.COMPACTED_STONE_WALL_TORCH.get(), RenderType.getCutout());
+      RenderTypeLookup.setRenderLayer(ModBlocks.STONE_WALL_TORCH.get(), RenderType.getCutout());
+      RenderTypeLookup.setRenderLayer(ModBlocks.DOUBLE_COMPACTED_STONE_WALL_TORCH.get(), RenderType.getCutout());
+    });
   }
 }
