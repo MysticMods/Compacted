@@ -2,11 +2,12 @@ package noobanidus.mods.compacted.init;
 
 import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
-import com.tterrag.registrate.util.RegistryEntry;
+import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.Item;
+import net.minecraft.tags.ITag;
 import net.minecraft.tags.Tag;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
@@ -15,15 +16,13 @@ import noobanidus.mods.compacted.CompactedTags;
 import noobanidus.mods.compacted.recipes.ImpacterRecipe;
 import noobanidus.mods.compacted.recipes.RepairRecipe;
 
-import javax.annotation.Nullable;
-
 import static noobanidus.mods.compacted.Compacted.REGISTRATE;
 
 public class ModRecipes {
   public static final RegistryEntry<ImpacterRecipe.ImpacterSerializer> IMAPCTER_SERIALIZER = REGISTRATE.recipeSerializer("impacter_recipe", ImpacterRecipe.ImpacterSerializer::new).register();
   public static final RegistryEntry<RepairRecipe.RepairSerializer> REPAIR_SERIALIZER = REGISTRATE.recipeSerializer("repair_recipe", RepairRecipe.RepairSerializer::new).register();
 
-  public static void compacter(Block start, RegistryEntry<? extends Block> compressed, RegistryEntry<? extends Block> doubleCompressed, Tag<Item> tag, RegistrateRecipeProvider p) {
+  public static void compacter(Block start, RegistryEntry<? extends Block> compressed, RegistryEntry<? extends Block> doubleCompressed, ITag.INamedTag<Item> tag, RegistrateRecipeProvider p) {
     String startName = start.getRegistryName().getPath();
     String compressedName = compressed.getId().getPath();
     String doubleName = doubleCompressed.getId().getPath();

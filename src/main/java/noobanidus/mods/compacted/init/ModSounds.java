@@ -1,6 +1,6 @@
 package noobanidus.mods.compacted.init;
 
-import com.tterrag.registrate.util.RegistryEntry;
+import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.util.SoundEvent;
 
 import static noobanidus.mods.compacted.Compacted.REGISTRATE;

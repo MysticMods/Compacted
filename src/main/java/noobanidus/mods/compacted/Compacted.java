@@ -2,6 +2,7 @@ package noobanidus.mods.compacted;
 
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
@@ -57,7 +58,7 @@ public class Compacted {
     });
 
     MinecraftForge.EVENT_BUS.register(this);
-    MinecraftForge.EVENT_BUS.addListener(Mappings::onItemMappings);
+    MinecraftForge.EVENT_BUS.addGenericListener(Item.class, Mappings::onItemMappings);
   }
 
   private void modSetup(FMLCommonSetupEvent event) {

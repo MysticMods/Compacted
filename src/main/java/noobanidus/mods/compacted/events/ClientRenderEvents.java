@@ -63,10 +63,10 @@ public class ClientRenderEvents {
       BlockRayTraceResult trace = (BlockRayTraceResult) ray;
       Set<BlockPos> positions = BreakUtil.nearbyBlocks(tool, trace.getPos(), trace.getFace(), player.world, player);
       ActiveRenderInfo info = mc.gameRenderer.getActiveRenderInfo();
-      Vector3d vec3d = info.getProjectedView();
-      double d0 = vec3d.getX();
-      double d1 = vec3d.getY();
-      double d2 = vec3d.getZ();
+      Vector3d Vector3d = info.getProjectedView();
+      double d0 = Vector3d.getX();
+      double d1 = Vector3d.getY();
+      double d2 = Vector3d.getZ();
 
       for (BlockPos position : positions) {
         IVertexBuilder ivertexBuilder = buffers.getBuffer(RenderType.getLines());

@@ -10,7 +10,9 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.*;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ForgeHooks;
 import noobanidus.mods.compacted.items.EffectiveToolItem;
 import noobanidus.mods.compacted.items.SizedToolItem;
@@ -54,7 +56,7 @@ public class BreakUtil {
         if (toolItem.getEffectiveBlocks().contains(state.getBlock()) || toolItem.getEffectiveMaterials().contains(state.getMaterial())) {
           world.destroyBlock(target, false);
           state.getBlock().harvestBlock(world, player, target, state, null, tool);
-          state.getBlock().dropXpOnBlockBreak(world, target, state.getExpDrop(world, target, fortune, silkTouch));
+          state.getBlock().dropXpOnBlockBreak((ServerWorld) world, target, state.getExpDrop(world, target, fortune, silkTouch));
           tool.damageItem(1, player, p -> p.sendBreakAnimation(Hand.MAIN_HAND));
         }
       }
@@ -108,7 +110,7 @@ public class BreakUtil {
   }
 
   public static RayTraceResult rayTrace(World world, PlayerEntity player) {
-    Vec3d eyes = player.getEyePosition(player.getEyeHeight());
+    Vector3d eyes = player.getEyePosition(player.getEyeHeight());
     float yawCos = MathHelper.cos(-player.rotationYaw * (float) (Math.PI / 180F) - (float) Math.PI);
     float yawSin = MathHelper.sin(-player.rotationYaw * (float) (Math.PI / 180F) - (float) Math.PI);
     float pitchCos = -MathHelper.cos(-player.rotationPitch * (float) (Math.PI / 180F));
@@ -117,8 +119,8 @@ public class BreakUtil {
     float f1 = yawSin * pitchCos;
     float f2 = yawCos * pitchCos;
 
-    double reach = player.getAttribute(PlayerEntity.REACH_DISTANCE).getValue();
-    Vec3d reachVec = eyes.add((double) f1 * reach, (double) pitchSin * reach, (double) f2 * reach);
+    double reach = player.getAttribute(net.minecraftforge.common.ForgeMod.REACH_DISTANCE.get()).getValue();
+    Vector3d reachVec = eyes.add(new Vector3d((double) f1 * reach, (double) pitchSin * reach, (double) f2 * reach));
     return world.rayTraceBlocks(new RayTraceContext(eyes, reachVec, RayTraceContext.BlockMode.OUTLINE, RayTraceContext.FluidMode.ANY, player));
   }
 }

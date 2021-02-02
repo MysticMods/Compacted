@@ -16,6 +16,7 @@ public class ModLang {
     REGISTRATE.addRawLang("tooltip.compacted.hold_shift", "[Hold shift for more]");
     REGISTRATE.addRawLang("tooltip.compacted.sneak_right_click", "Sneak-right-click empty air to toggle between active/inactive.");
     REGISTRATE.addRawLang("subtitles.compacted.item.toggled", "Item mode toggled");
+    REGISTRATE.addRawLang("itemGroup.compacted", "Compacted");
   }
 
   public static void load () {
