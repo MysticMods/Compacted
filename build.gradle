@@ -16,7 +16,6 @@ buildscript {
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.0.+', changing: true
-        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
     }
 }
 plugins {
@@ -26,7 +25,6 @@ plugins {
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'maven-publish'
 apply plugin: 'eclipse'
-apply plugin: 'org.spongepowered.mixin'
 
 version = "${minecraft_version}-${mod_version}"
 if (System.getenv('BUILD_NUMBER') != null) {
@@ -36,7 +34,6 @@ group = 'noobanidus.mods' // http://maven.apache.org/guides/mini/guide-naming-co
 archivesBaseName = 'compacted'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
-
 
 minecraft {
     mappings channel: 'snapshot', version: "${mcp_mappings}"
@@ -52,7 +49,6 @@ minecraft {
 
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
-/*            arg "-mixin.config=compacted.mixins.json"*/
             property 'mixin.env.disableRefMap', 'true'
 
             mods {
@@ -70,7 +66,6 @@ minecraft {
 
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
-/*            arg "-mixin.config=compacted.mixins.json"*/
             property 'mixin.env.disableRefMap', 'true'
 
             mods {
@@ -90,7 +85,6 @@ minecraft {
 
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
-/*            arg "-mixin.config=compacted.mixins.json"*/
             property 'mixin.env.disableRefMap', 'true'
 
             args '--mod', 'compacted', '--all', '--output', file('src/generated/resources/'), '--existing', sourceSets.main.resources.srcDirs[0]
@@ -120,18 +114,6 @@ repositories {
         name = "Progwml6 maven"
         url = "https://dvs1.progwml6.com/files/maven/"
     }
-    maven {
-        name = "JER"
-        url = "https://dl.bintray.com/way2muchnoise/dev"
-    }
-    maven { url = 'https://repo.spongepowered.org/maven/' }
-
-    maven { url = 'https://dist.creeper.host/Sponge/maven' }
-    jcenter()
-    mavenCentral()
-    flatDir {
-        dirs 'libs'
-    }
 }
 
 configurations {
@@ -150,9 +132,6 @@ dependencies {
     def noobutil = "noobanidus.libs:noobutil:${minecraft_version}-${noobutil_version}"
     implementation fg.deobf(noobutil)
     shade noobutil
-
-    compile 'org.spongepowered:mixin:0.8'
-    annotationProcessor 'org.spongepowered:mixin:0.8:processor'
 }
 
 sourceSets.main.resources {
@@ -169,7 +148,6 @@ jar {
                 "Implementation-Version"  : "${version}",
                 "Implementation-Vendor"   : "Noobanidus",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
-/*                "MixinConfigs"            : "compacted.mixins.json"*/
         ])
     }
 }
@@ -203,10 +181,6 @@ task deobfJar(type: Jar) {
 
 build.dependsOn apiJar
 build.dependsOn deobfJar
-
-/*mixin {
-    add sourceSets.main, "compacted.refmap.json"
-}*/
 
 publishing {
     publications {
